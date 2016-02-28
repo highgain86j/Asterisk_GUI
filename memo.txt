@@ -1,0 +1,245 @@
+// Copy this script to /mnt/kd/phoneprov/phone-ldap-dir.php to make changes.
+$prefix = '/mnt/kd/.';
+$tmp_name = tempnam("/mnt/kd", ".PHP_");
+$out_file = tempnam("/mnt/kd", ".PHP_");
+$name = '/mnt/kd/.import_ldif'.$suffix;
+$name = '/mnt/kd/.import_vcard'.$suffix;
+putHtml('Combined Unionfs and /mnt/kd/ partition');
+putHtml('Separate Unionfs and /mnt/kd/ partitions');
+// System location of /mnt/kd/rc.conf.d directory
+$IPSECCONFDIR = '/mnt/kd/rc.conf.d';
+$IPSECCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsec.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$FAILOVERCONFDIR = '/mnt/kd/rc.conf.d';
+$FAILOVERCONFFILE = '/mnt/kd/rc.conf.d/gui.failover.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$XMPPCONFDIR = '/mnt/kd/rc.conf.d';
+$XMPPCONFFILE = '/mnt/kd/rc.conf.d/gui.xmpp.conf';
+if (is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (is_writable($file = '/mnt/kd/prosody/sharedgroups.conf')) {
+if (! is_file('/mnt/kd/ssl/sip-tls/keys/server.crt') || ! is_file('/mnt/kd/ssl/sip-tls/keys/server.key')) {
+if (is_file('/mnt/kd/prosody/sharedgroups.conf')) {
+if (is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+$STAFF_LOGFILE = '/mnt/kd/webgui-staff-activity.log';
+// System location of /mnt/kd/rc.conf.d directory
+$SIPTLSCERTCONFDIR = '/mnt/kd/rc.conf.d';
+$SIPTLSCERTCONFFILE = '/mnt/kd/rc.conf.d/gui.siptlscert.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+putText('tlscertfile=/mnt/kd/ssl/sip-tls/keys/server.crt');
+putText('tlsprivatekey=/mnt/kd/ssl/sip-tls/keys/server.key');
+// System location of /mnt/kd/rc.conf.d directory
+$IPSECMCONFDIR = '/mnt/kd/rc.conf.d';
+$IPSECMCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsecmobile.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+$value = isset($_POST['path']) ? tuq($_POST['path']) : '/mnt/kd/ipsec';
+$value = '/mnt/kd/ipsec';
+// System location of /mnt/kd/rc.conf.d directory
+$PHONEPROVCONFDIR = '/mnt/kd/rc.conf.d';
+$PHONEPROVCONFFILE = '/mnt/kd/rc.conf.d/gui.phoneprov.conf';
+$db_file = '/mnt/kd/asterisk-odbc.sqlite3';
+$conf_files = array ('/mnt/kd/massdeployment.conf',
+'/mnt/kd/webgui-massdeployment.conf',
+'/mnt/kd/phoneprov/massdeployment.conf');
+$conf_file = '/mnt/kd/webgui-massdeployment.conf';
+$phoneprov_base_dir = trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/mnt/kd/phoneprov}"'));
+if ($dir === '/mnt/kd' ||
+$dir === '/mnt/kd/dahdi' ||
+$dir === '/mnt/kd/openvpn' ||
+$dir === '/mnt/kd/openvpn/ccd' ||
+$dir === '/mnt/kd/rc.conf.d' ||
+$dir === '/mnt/kd/crontabs' ||
+$dir === '/mnt/kd/snmp' ||
+$dir === '/mnt/kd/fop2' ||
+$dir === '/mnt/kd/kamailio' ||
+$dir === '/mnt/kd/monit' ||
+$dir === '/mnt/kd/monit/monit.d' ||
+$dir === '/mnt/kd/ups' ||
+$dir === '/mnt/kd/prosody' ||
+$dir === '/mnt/kd/docs' ||
+$dir === '/mnt/kd/arno-iptables-firewall' ||
+$dir === '/mnt/kd/arno-iptables-firewall/plugins' ||
+$dir === '/mnt/kd/phoneprov/templates' ||
+if (is_writable($file = '/mnt/kd/rc.conf.d/user.conf')) {
+foreach (glob('/mnt/kd/*.conf') as $globfile) {
+$label = isset($sys_label["$label"]) ? $sys_label["$label"] : '/mnt/kd/ System Config File';
+foreach (glob('/mnt/kd/dahdi/*.conf') as $globfile) {
+if (is_writable($file = '/mnt/kd/openvpn/openvpn.conf')) {
+if (is_writable($file = '/mnt/kd/openvpn/openvpnclient.conf')) {
+if (is_writable($file = '/mnt/kd/ethers')) {
+if (is_writable($file = '/mnt/kd/hosts')) {
+if (is_writable($file = '/mnt/kd/dnsmasq.static')) {
+if (is_writable($file = '/mnt/kd/dnsmasq.leases')) {
+if (is_writable($file = '/mnt/kd/blocked-hosts')) {
+if (is_writable($file = '/mnt/kd/crontabs/root')) {
+if (is_writable($file = '/mnt/kd/ast-crash')) {
+foreach (glob('/mnt/kd/rc.*') as $globfile) {
+if ($globfile === '/mnt/kd/rc.local' ||
+$globfile === '/mnt/kd/rc.local.stop' ||
+$globfile === '/mnt/kd/rc.elocal' ||
+$globfile === '/mnt/kd/rc.ledcontrol') {
+if (is_writable($file = '/mnt/kd/prosody/prosody.conf')) {
+if (is_writable($file = '/mnt/kd/prosody/sharedgroups.conf')) {
+if (is_writable($file = '/mnt/kd/snmp/snmpd.conf')) {
+if (is_writable($file = '/mnt/kd/snmp/snmp.conf')) {
+if (is_writable($file = '/mnt/kd/wan-failover.script')) {
+if (is_dir('/mnt/kd/openvpn/ccd') && count($globfiles = glob('/mnt/kd/openvpn/ccd/*')) > 0) {
+if (is_dir('/mnt/kd/ups') && count($globfiles = glob('/mnt/kd/ups/*.conf')) > 0) {
+if (is_writable($file = '/mnt/kd/ups/upsd.users')) {
+if (is_dir('/mnt/kd/monit/monit.d') && count($globfiles = glob('/mnt/kd/monit/monit.d/*.conf')) > 0) {
+if (is_writable($file = '/mnt/kd/monit/monitrc')) {
+if (is_dir('/mnt/kd/docs') && count($globfiles = glob('/mnt/kd/docs/*')) > 0) {
+putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - /mnt/kd/docs/ File</option>');
+if (is_dir('/mnt/kd/fop2') && count($globfiles = glob('/mnt/kd/fop2/*.cfg')) > 0) {
+if (is_dir('/mnt/kd/kamailio') && count($globfiles = glob('/mnt/kd/kamailio/*.cfg')) > 0) {
+if (is_dir('/mnt/kd/phoneprov/templates') && count($globfiles = glob('/mnt/kd/phoneprov/templates/*.conf')) > 0) {
+if (is_writable($file = '/mnt/kd/arno-iptables-firewall/custom-rules')) {
+// 08-24-2008, Added /mnt/kd/ prefs file support
+putHtml('<input type="checkbox" value="backup_asturw" name="backup_asturw"'.$sel.' /></td><td colspan="5">Backup unionfs partition as /mnt/kd/asturw.tar[.gz]</td></tr>');
+putHtml('<input type="checkbox" value="backup_temp" name="backup_temp"'.$sel.' /></td><td colspan="5">Backup temporary file uses /mnt/kd/ instead of /tmp/</td></tr>');
+// System location of /mnt/kd/rc.conf.d directory
+$MONITCONFDIR = '/mnt/kd/rc.conf.d';
+$MONITCONFFILE = '/mnt/kd/rc.conf.d/gui.monit.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$OPENVPNUSERPASSCONFDIR = '/mnt/kd/rc.conf.d';
+$OPENVPNUSERPASSCONFFILE = '/mnt/kd/rc.conf.d/gui.openvpnuserpass.conf';
+"path"=> "/mnt/kd/asterisk-odbc.sqlite3",
+if (is_file('/mnt/kd/cdr-sqlite3/cdr-odbc.sqlite3')) {
+$databases[] = array( "path"=> "/mnt/kd/cdr-sqlite3/cdr-odbc.sqlite3", "name"=> "CDR ODBC" );
+if (is_file('/mnt/kd/cdr-sqlite3/master.db')) {
+$databases[] = array( "path"=> "/mnt/kd/cdr-sqlite3/master.db", "name"=> "CDR SQLite3" );
+$target = '/mnt/kd';
+$asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/mnt/kd/asturw'.$suffix : '';
+$prefix = (getPREFdef($global_prefs, 'system_backup_temp_disk') === 'yes') ? '/mnt/kd/.' : '/tmp/';
+$firewall = is_dir('/mnt/kd/arno-iptables-firewall/plugins') ? ' "arno-iptables-firewall/plugins"' : '';
+$phoneprov_base_dir = rtrim(trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/mnt/kd/phoneprov}"')), '/');
+if (is_dir("$phoneprov_base_dir/templates") && (strncmp($phoneprov_base_dir, '/mnt/kd', strlen('/mnt/kd')) == 0)) {
+$templates = ' "'.substr("$phoneprov_base_dir/templates", strlen('/mnt/kd/')).'"';
+$srcfile = '$(ls -1 /mnt/kd/ | sed -n -e "s/^rc.conf.d$/&/p" -e "s/^ssh_keys$/&/p"';
+$srcfile = '$(ls -1 /mnt/kd/ | sed -n -e "s/^cdr-.*/&/p")';
+$srcfile = '$(ls -1 /mnt/kd/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//")';
+$asturw = '/mnt/kd/asturw'.$suffix;
+$srcfile = '$(ls -1 /mnt/kd/)';
+shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /mnt/kd >/dev/null 2>/dev/null', $status);
+$name = '/mnt/kd/.restore'.$suffix;
+putHtml('<p style="color: red;">Backup Failed, click <a href="/admin/prefs.php" class="headerText">Prefs</a>then check "Backup temporary file uses /mnt/kd/ instead of /tmp/"</p>');
+if (is_file($file = '/mnt/kd/webgui-staff-activity.log')) {
+if (is_file($file = '/mnt/kd/rc.conf.d/user.conf')) {
+if (is_file($file = '/mnt/kd/arno-iptables-firewall/firewall.conf')) {
+if (is_file($file = '/mnt/kd/crontabs/root')) {
+if (is_file($file = '/mnt/kd/ntpd.drift')) {
+if (is_dir('/mnt/kd/docs')) {
+foreach (glob('/mnt/kd/docs/*') as $globfile) {
+putHtml('<option value="full">All /mnt/kd/ '.$sel.'files</option>');
+<option value="unionfs">Non-/mnt/kd/ unionfs files</option>
+// System location of /mnt/kd/rc.conf.d directory
+$PPTPCONFDIR = '/mnt/kd/rc.conf.d';
+$PPTPCONFFILE = '/mnt/kd/rc.conf.d/gui.pptp.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$SLAPDCONFDIR = '/mnt/kd/rc.conf.d';
+$SLAPDCONFFILE = '/mnt/kd/rc.conf.d/gui.slapd.conf';
+if (! is_file('/mnt/kd/ssl/sip-tls/keys/server.crt') || ! is_file('/mnt/kd/ssl/sip-tls/keys/server.key')) {
+// System location of /mnt/kd/rc.conf.d directory
+$NETCONFDIR = '/mnt/kd/rc.conf.d';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+$FIREWALLCONFFILE = '/mnt/kd/rc.conf.d/gui.firewall.conf';
+if (is_file('/mnt/kd/vsftpd.conf')) {
+$value = 'FTPDOPTIONS="/mnt/kd/vsftpd.conf"';
+$fname = '/mnt/kd/ssl/webinterface.pem';
+if (($fp = @fopen('/mnt/kd/rc.conf.d/gui.openvpn.conf', 'wb')) === FALSE) {
+if (($fp = @fopen('/mnt/kd/rc.conf.d/gui.openvpnclient.conf', 'wb')) === FALSE) {
+$user_conf = '/mnt/kd/rc.conf.d/user.conf';
+if (is_writable($file = '/mnt/kd/ntpd.conf')) {
+if (is_writable($file = '/mnt/kd/msmtp-aliases.conf')) {
+if (is_writable($file = '/mnt/kd/kamailio/kamailio-local.cfg')) {
+} elseif (is_writable($file = '/mnt/kd/kamailio/kamailio.cfg')) {
+if (is_writable($file = '/mnt/kd/slapd.conf')) {
+if (is_writable($file = '/mnt/kd/snmp/snmpd.conf')) {
+if (is_writable($file = '/mnt/kd/dnsmasq.conf')) {
+if (is_writable($file = '/mnt/kd/dnsmasq.static')) {
+if (is_writable($file = '/mnt/kd/ldap.conf')) {
+if (is_writable($file = '/mnt/kd/ups/ups.conf')) {
+if (is_writable($file = '/mnt/kd/openvpn/openvpn.conf')) {
+if (is_file($tmpfile = '/mnt/kd/rc.conf.d/gui.openvpn.conf')) {
+if (is_writable($file = '/mnt/kd/openvpn/openvpnclient.conf')) {
+if (is_file($tmpfile = '/mnt/kd/rc.conf.d/gui.openvpnclient.conf')) {
+if (createUSERconf($file = '/mnt/kd/rc.conf.d/user.conf') === FALSE) {
+if (! is_file('/mnt/kd/ntpd.conf')) {
+$value = '/mnt/kd/ssl/ca-smtp.pem';
+if (is_file('/mnt/kd/msmtp-aliases.conf')) {
+(is_file('/mnt/kd/kamailio/kamailio.cfg') || is_file('/mnt/kd/kamailio/kamailio-local.cfg'))) {
+if (is_file('/etc/init.d/snmpd') && is_file('/mnt/kd/snmp/snmpd.conf')) {
+if (! is_file('/mnt/kd/ldap.conf')) {
+$value = '/mnt/kd/ssl/ca-ldap.pem';
+if (! is_file('/mnt/kd/ups/ups.conf')) {
+if (is_writable('/mnt/kd/dnsmasq.conf')) {
+} elseif (is_writable('/mnt/kd/dnsmasq.static')) {
+// System location of /mnt/kd/rc.conf.d directory
+$OVPNCONFDIR = '/mnt/kd/rc.conf.d';
+$OVPNCONFFILE = '/mnt/kd/rc.conf.d/gui.openvpn.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+$base = '/mnt/kd/openvpn/easy-rsa/keys';
+$value = '/mnt/kd/openvpn/easy-rsa/keys/ca.crt';
+$value = '/mnt/kd/openvpn/easy-rsa/keys/server.crt';
+$value = '/mnt/kd/openvpn/easy-rsa/keys/server.key';
+$value = '/mnt/kd/openvpn/easy-rsa/keys/dh1024.pem';
+// 01-18-2016, Add Primary /mnt/kd/ files Backup
+$CONFFILE = '/mnt/kd/webgui-staff-backup.conf';
+$LOGFILE = '/mnt/kd/webgui-staff-activity.log';
+$asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/mnt/kd/asturw'.$suffix : '';
+$prefix = '/mnt/kd/.';
+foreach (glob('/mnt/kd/wanpipe/*.conf') as $globfile) {
+$templates = (is_dir('/mnt/kd/phoneprov/templates')) ? ' "phoneprov/templates"' : '';
+$srcfile = '$(ls -1 /mnt/kd/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//"';
+$srcfile = '$(ls -1 /mnt/kd/)';
+shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /mnt/kd >/dev/null 2>/dev/null', $status);
+putHtml('<option value="primary">Primary /mnt/kd/ '.$sel.'files</option>');
+putHtml('<option value="full">All /mnt/kd/ '.$sel.'files</option>');
+// System location of /mnt/kd/rc.conf.d directory
+$DNSHOSTSCONFDIR = '/mnt/kd/rc.conf.d';
+$DNSHOSTSCONFFILE = '/mnt/kd/rc.conf.d/gui.dnshosts.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$FIREWALLCONFDIR = '/mnt/kd/rc.conf.d';
+$FIREWALLCONFFILE = '/mnt/kd/rc.conf.d/gui.firewall.conf';
+$value = 'BLOCK_HOSTS_FILE="/mnt/kd/blocked-hosts"';
+putHtml('<p style="color: green;">Firewall is Upgraded and Restarted. Previous files are in: /mnt/kd/arno-iptables-OLD</p>');
+$sel = (getVARdef($vars, 'BLOCK_HOSTS_FILE') === '/mnt/kd/blocked-hosts') ? ' checked="checked"' : '';
+putHtml('<input type="checkbox" value="file_blocked" name="file_blocked"'.$sel.' /></td><td>Block Host/CIDR using the file /mnt/kd/blocked-hosts</td></tr>');
+// System location of /mnt/kd/rc.conf.d directory
+$IPSECXAUTHCONFDIR = '/mnt/kd/rc.conf.d';
+$IPSECXAUTHCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsecxauth.conf';
+$dir === '/mnt/kd' ||
+$dir === '/mnt/kd/openvpn' ||
+$dir === '/mnt/kd/rc.conf.d' ||
+$dir === '/mnt/kd/arno-iptables-firewall' ||
+$dir === '/mnt/kd/crontabs' ||
+$dir === '/mnt/kd/docs' ||
+$pdo_db = new PDO("sqlite:/mnt/kd/asterisk-odbc.sqlite3");
+// System location of /mnt/kd/rc.conf.d directory
+$OVPNCONFDIR = '/mnt/kd/rc.conf.d';
+$OVPNCONFFILE = '/mnt/kd/rc.conf.d/gui.openvpnclient.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$DNSCRYPTCONFDIR = '/mnt/kd/rc.conf.d';
+$DNSCRYPTCONFFILE = '/mnt/kd/rc.conf.d/gui.dnscrypt.conf';
+// System location of /mnt/kd/rc.conf.d directory
+$ZABBIXCONFDIR = '/mnt/kd/rc.conf.d';
+$ZABBIXCONFFILE = '/mnt/kd/rc.conf.d/gui.zabbix.conf';
+$ssl['base_dir'] = '/mnt/kd/ipsec';
+$ssl['base_dir'] = '/mnt/kd/openvpn';
+$ssl['base_dir'] = '/mnt/kd/ssl';
+$KD_PREFS_LOCATION = '/mnt/kd/webgui-prefs.txt';
+shell('echo "'.$user.'" >/mnt/kd/crontabs/cron.update 2>/dev/null', $status);
+$dir = '/mnt/kd/arno-iptables-firewall/plugins';
+if (is_file('/mnt/kd/ntpd.conf')) {
+$value = '#NTP server is specified in /mnt/kd/ntpd.conf';
+if (is_file('/mnt/kd/ups/ups.conf')) {
+$value = '#UPS driver is specified in /mnt/kd/ups/ups.conf';
+$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+$ssl['base_dir'] = '/mnt/kd/openvpn';
+$ssl['base_dir'] = '/mnt/kd/ipsec';
+
