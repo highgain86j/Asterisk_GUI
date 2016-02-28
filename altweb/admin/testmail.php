@@ -10,7 +10,7 @@
 // 01-30-2012
 //
 // System location of gui.network.conf file
-$NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+$NETCONFFILE = '/config.d/gui.network.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

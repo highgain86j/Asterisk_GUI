@@ -185,7 +185,7 @@ function AMIoriginate($num, $channel, $opts) {
 function normalize_phone_number($num, &$opts) {
 
   if ($num !== '') {
-    if (($df = trim(shell_exec('. /etc/rc.conf; echo "$DIALING_PREFIX_NUMBERS"'))) !== '') {
+    if (($df = trim(shell_exec('. /config; echo "$DIALING_PREFIX_NUMBERS"'))) !== '') {
       $df_opts = explode('~', $df);
       $internationalprefix = isset($df_opts[0]) ? $df_opts[0] : '';
       $nationalprefix = isset($df_opts[1]) ? $df_opts[1] : '';

@@ -10,10 +10,10 @@
 // 11-12-2012
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /etc/rc.conf.d directory
-$SIPTLSCERTCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$SIPTLSCERTCONFDIR = '/config.d';
 // System location of gui.siptlscert.conf file
-$SIPTLSCERTCONFFILE = '/etc/rc.conf.d/gui.siptlscert.conf';
+$SIPTLSCERTCONFFILE = '/config.d/gui.siptlscert.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -34,7 +34,7 @@ if (is_file($SIPTLSCERTCONFFILE)) {
 function siptlscert_openssl($keysize, $algorithm, $dnsname) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/config.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';

@@ -12,10 +12,10 @@
 // 02-13-2013, Added OpenVPN 2.3 IPv6 support
 // 02-23-2013, Added User/Pass support
 //
-// System location of /etc/rc.conf.d directory
-$OVPNCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$OVPNCONFDIR = '/config.d';
 // System location of gui.openvpnclient.conf file
-$OVPNCONFFILE = '/etc/rc.conf.d/gui.openvpnclient.conf';
+$OVPNCONFFILE = '/config.d/gui.openvpnclient.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

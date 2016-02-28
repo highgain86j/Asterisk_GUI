@@ -15,10 +15,10 @@
 // 02-13-2013, Added OpenVPN 2.3 IPv6 support
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /etc/rc.conf.d directory
-$OVPNCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$OVPNCONFDIR = '/config.d';
 // System location of gui.openvpn.conf file
-$OVPNCONFFILE = '/etc/rc.conf.d/gui.openvpn.conf';
+$OVPNCONFFILE = '/config.d/gui.openvpn.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -39,7 +39,7 @@ if (is_file($OVPNCONFFILE)) {
 function openvpn_openssl($keysize, $algorithm) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/config.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';

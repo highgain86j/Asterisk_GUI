@@ -289,11 +289,11 @@ require_once '../common/header.php';
   $pos = strrpos($openfile, '/');
   $dir = substr($openfile, 0, $pos);
   
-  if ($dir === '/mnt/kd' ||
+  if ($dir === '/etc' ||
       $dir === '/etc/dahdi' ||
       $dir === '/etc/openvpn' ||
       $dir === '/etc/openvpn/ccd' ||
-      $dir === '/etc/rc.conf.d' ||
+      $dir === '/config.d' ||
       $dir === '/etc/crontabs' ||
       $dir === '/etc/snmp' ||
       $dir === '/etc/fop2' ||
@@ -448,7 +448,7 @@ require_once '../common/header.php';
   <select name="file_list" size="8">
 <?php
   putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; System Configuration &mdash;&mdash;&mdash;&mdash;">');
-  if (is_writable($file = '/etc/rc.conf.d/user.conf')) {
+  if (is_writable($file = '/config.d/user.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - User System Variables</option>');
   }

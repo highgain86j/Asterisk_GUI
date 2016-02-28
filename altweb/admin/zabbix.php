@@ -10,11 +10,11 @@
 // 08-31-2012
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$ZABBIXCONFDIR = '/etc/rc.conf.d';
+$CONFFILE = '/config';
+// System location of /config.d directory
+$ZABBIXCONFDIR = '/config.d';
 // System location of gui.zabbix.conf file
-$ZABBIXCONFFILE = '/etc/rc.conf.d/gui.zabbix.conf';
+$ZABBIXCONFFILE = '/config.d/gui.zabbix.conf';
 // Zabbix proxy executable location
 $ZABBIX_PROXY_EXE = '/usr/bin/zabbix_proxy';
 

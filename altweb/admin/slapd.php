@@ -10,11 +10,11 @@
 // 10-21-2013
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$SLAPDCONFDIR = '/etc/rc.conf.d';
+$CONFFILE = '/config';
+// System location of /config.d directory
+$SLAPDCONFDIR = '/config.d';
 // System location of gui.slapd.conf file
-$SLAPDCONFFILE = '/etc/rc.conf.d/gui.slapd.conf';
+$SLAPDCONFFILE = '/config.d/gui.slapd.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -73,7 +73,7 @@ function set_LDAP_user_passwd($rootpw, $pass1, $pass2, $user, $minlen) {
         $result = 21;
         $admin = tempnam("/var/tmp", "PHP_");
         $newpass = tempnam("/var/tmp", "PHP_");
-        $cmd = '. /etc/rc.conf; ';
+        $cmd = '. /config; ';
         $cmd .= '/usr/bin/ldappasswd -x -D "cn=admin,${LDAP_SERVER_BASEDN:-dc=ldap}" -H ldap://127.0.0.1 ';
         $cmd .= '-y '.$admin.' -T '.$newpass.' "cn='.$user.',ou=users,${LDAP_SERVER_BASEDN:-dc=ldap}"';
         @file_put_contents($admin, $rootpw);

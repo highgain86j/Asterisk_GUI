@@ -10,10 +10,10 @@
 // 11-23-2010
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /etc/rc.conf.d directory
-$IPSECMCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$IPSECMCONFDIR = '/config.d';
 // System location of gui.ipsecmobile.conf file
-$IPSECMCONFFILE = '/etc/rc.conf.d/gui.ipsecmobile.conf';
+$IPSECMCONFFILE = '/config.d/gui.ipsecmobile.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -34,7 +34,7 @@ if (is_file($IPSECMCONFFILE)) {
 function ipsecmobile_openssl($keysize, $algorithm, $dnsname) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/config.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';

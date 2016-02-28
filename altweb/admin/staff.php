@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
       }
     }
-    shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /mnt/kd >/dev/null 2>/dev/null', $status);
+    shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /etc >/dev/null 2>/dev/null', $status);
     if ($asturw !== '') {
       @unlink($asturw);
     }

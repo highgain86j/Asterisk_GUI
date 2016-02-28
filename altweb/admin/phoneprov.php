@@ -11,10 +11,10 @@
 // 08-02-2015, Add Status, Reload and Reboot links
 // 08-04-2015, Add pjsip support
 //
-// System location of /etc/rc.conf.d directory
-$PHONEPROVCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$PHONEPROVCONFDIR = '/config.d';
 // System location of gui.phoneprov.conf file
-$PHONEPROVCONFFILE = '/etc/rc.conf.d/gui.phoneprov.conf';
+$PHONEPROVCONFFILE = '/config.d/gui.phoneprov.conf';
 // Asterisk sip_notify config file
 $ASTERISK_SIP_NOTIFY_CONF = '/etc/asterisk/sip_notify.conf';
 // Asterisk pjsip_notify config file
@@ -689,7 +689,7 @@ require_once '../common/header.php';
   <table class="layout"><tr><td><center>
   <form method="post" action="<?php echo $myself;?>">
 <?php
-  $phoneprov_base_dir = trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"'));
+  $phoneprov_base_dir = trim(shell_exec('. /config; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"'));
 
   if (is_file($PHONEPROVCONFFILE)) {
     $vars = parseRCconf($PHONEPROVCONFFILE);

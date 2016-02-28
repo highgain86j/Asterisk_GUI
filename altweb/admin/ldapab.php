@@ -10,7 +10,7 @@
 // 10-26-2013
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
+$CONFFILE = '/config';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -43,7 +43,7 @@ function exportLDIF($rootpw, $ou) {
   }
   $prefix = '/etc/.';
   $tmpfile = $backup_name.'-'.$ou.'-'.date('Y-m-d').'.ldif.txt';
-  $bdn = trim(shell_exec('. /etc/rc.conf; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
+  $bdn = trim(shell_exec('. /config; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
 
   $admin = tempnam("/var/tmp", "PHP_");
   $auth = '-x -D "cn=admin,'.$bdn.'" -H ldap://127.0.0.1 -y '.$admin;
@@ -71,7 +71,7 @@ function exportLDIF($rootpw, $ou) {
 //
 function revertLDIF($rootpw, $ou) {
 
-  $bdn = trim(shell_exec('. /etc/rc.conf; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
+  $bdn = trim(shell_exec('. /config; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
   $ou_old = $ou.'-old';
   $ou_tmp = $ou.'-tmp';
 
@@ -110,7 +110,7 @@ function revertLDIF($rootpw, $ou) {
 function importLDIF($rootpw, $ou, $name, &$count) {
 
   $count = 0;
-  $bdn = trim(shell_exec('. /etc/rc.conf; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
+  $bdn = trim(shell_exec('. /config; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
   $ou_old = $ou.'-old';
 
   $cmd = 'grep -qi "^dn:[^,]*ou='.$ou.','.$bdn.'$" '.$name;
@@ -120,7 +120,7 @@ function importLDIF($rootpw, $ou, $name, &$count) {
     $ou_dn = "dn: ou=$ou,$bdn\nobjectClass: organizationalUnit\nou: $ou\n\n";
     $context = stream_context_create();
     if (($fp = @fopen($name, 'r', FALSE, $context)) !== FALSE) {
-      $tmp_name = tempnam("/mnt/kd", ".PHP_");
+      $tmp_name = tempnam("/etc", ".PHP_");
       @file_put_contents($tmp_name, $ou_dn);
       @file_put_contents($tmp_name, $fp, FILE_APPEND);
       fclose($fp);
@@ -171,8 +171,8 @@ function importLDIF($rootpw, $ou, $name, &$count) {
 function importVCARD($rootpw, $ou, $name, &$count) {
 
   $count = 0;
-  $bdn = trim(shell_exec('. /etc/rc.conf; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
-  $out_file = tempnam("/mnt/kd", ".PHP_");
+  $bdn = trim(shell_exec('. /config; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
+  $out_file = tempnam("/etc", ".PHP_");
 
   if (vcard_export($ou, $bdn, $name, $out_file) === FALSE) {
     @unlink($out_file);
@@ -408,7 +408,7 @@ if (is_file('/var/run/slapd/slapd.pid')) {
   putHtml('<input type="checkbox" value="opt_s" name="opt_s" /></td><td>Sanitize phone numbers to only<br />include "+0123456789" characters</td></tr>');
   putHtml('<tr><td class="dialogText" style="text-align: right;">');
   putHtml('<input type="checkbox" value="opt_S" name="opt_S" checked="checked" /></td><td>Sanitize as above but replace<br />sequential non-numbers with a dash "-"</td></tr>');
-  if (($df = trim(shell_exec('. /etc/rc.conf; echo "$DIALING_PREFIX_NUMBERS"'))) !== '') {
+  if (($df = trim(shell_exec('. /config; echo "$DIALING_PREFIX_NUMBERS"'))) !== '') {
     putHtml('<tr><td class="dialogText" style="text-align: right;">');
     putHtml('<input type="checkbox" value="'.$df.'" name="opt_n" /></td><td>Normalize International E.164 prefixes');
     putHtml('</td></tr>');

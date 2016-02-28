@@ -40,16 +40,16 @@ require_once '../common/header.php';
   } else {
     if ($dir === '/var/log' ||
         $dir === '/var/log/asterisk' ||
-        $dir === '/mnt/kd' ||
+        $dir === '/etc' ||
         $dir === '/etc/openvpn' ||
-        $dir === '/etc/rc.conf.d' ||
+        $dir === '/config.d' ||
         $dir === '/etc/arno-iptables-firewall' ||
         $dir === '/etc/crontabs' ||
         $dir === '/etc/docs' ||
         $dir === '/etc/asterisk' ||
         $dir === '/etc/dahdi' ||
         $file === '/etc/ssh/sshd_config' ||
-        $file === '/stat/etc/rc.conf' ||
+        $file === '/config' ||
         $file === '/var/db/ntpd.drift' ||
         $file === '/etc/udev/rules.d/70-persistent-net.rules' ||
         ($dir === '/etc' && (substr($file, -5) === '.conf'))) {

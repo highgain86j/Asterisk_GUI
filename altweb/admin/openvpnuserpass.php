@@ -9,10 +9,10 @@
 // openvpnuserpass.php for AstLinux
 // 06-05-2012
 //
-// System location of /etc/rc.conf.d directory
-$OPENVPNUSERPASSCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$OPENVPNUSERPASSCONFDIR = '/config.d';
 // System location of gui.openvpnuserpass.conf file
-$OPENVPNUSERPASSCONFFILE = '/etc/rc.conf.d/gui.openvpnuserpass.conf';
+$OPENVPNUSERPASSCONFFILE = '/config.d/gui.openvpnuserpass.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

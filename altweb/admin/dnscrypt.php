@@ -10,11 +10,11 @@
 // 02-08-2014
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$DNSCRYPTCONFDIR = '/etc/rc.conf.d';
+$CONFFILE = '/config';
+// System location of /config.d directory
+$DNSCRYPTCONFDIR = '/config.d';
 // System location of gui.dnscrypt.conf file
-$DNSCRYPTCONFFILE = '/etc/rc.conf.d/gui.dnscrypt.conf';
+$DNSCRYPTCONFFILE = '/config.d/gui.dnscrypt.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

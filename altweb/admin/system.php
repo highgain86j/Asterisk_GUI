@@ -20,7 +20,7 @@
 // 07-21-2013, Added Add-On Packages
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
+$CONFFILE = '/config';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -131,7 +131,7 @@ function uncompressARCHIVE($name, $suffix) {
 //
 function restoreBASICconfig($name) {
   
-  $target = '/mnt/kd';
+  $target = '/etc';
   
   // Helper script
   shell('/usr/sbin/restore-basic-conf "'.$name.'" "'.$target.'" >/dev/null 2>/dev/null', $status);
@@ -186,8 +186,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tmpfile = $backup_name.'-'.$backup_type.'-'.date('Y-m-d').$suffix;
     if ($backup_type === 'basic') {
       $firewall = is_dir('/etc/arno-iptables-firewall/plugins') ? ' "arno-iptables-firewall/plugins"' : '';
-      $phoneprov_base_dir = rtrim(trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"')), '/');
-      if (is_dir("$phoneprov_base_dir/templates") && (strncmp($phoneprov_base_dir, '/mnt/kd', strlen('/mnt/kd')) == 0)) {
+      $phoneprov_base_dir = rtrim(trim(shell_exec('. /config; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"')), '/');
+      if (is_dir("$phoneprov_base_dir/templates") && (strncmp($phoneprov_base_dir, '/etc', strlen('/etc')) == 0)) {
         $templates = ' "'.substr("$phoneprov_base_dir/templates", strlen('/etc/')).'"';
       } else {
         $templates = '';
@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
       }
     }
-    shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /mnt/kd >/dev/null 2>/dev/null', $status);
+    shell($tarcmd.$prefix.$tmpfile.' '.$srcfile.' -C /etc >/dev/null 2>/dev/null', $status);
     if ($asturw !== '') {
       @unlink($asturw);
     }
@@ -620,10 +620,10 @@ require_once '../common/header.php';
   if (is_file($file = '/var/log/zabbix_proxy.log')) {
     putHtml('<option value="'.$file.'">Zabbix Proxy log</option>');
   }
-  if (is_file($file = '/stat/etc/rc.conf')) {
+  if (is_file($file = '/config')) {
     putHtml('<option value="'.$file.'">Default System Variables</option>');
   }
-  if (is_file($file = '/etc/rc.conf.d/user.conf')) {
+  if (is_file($file = '/config.d/user.conf')) {
     putHtml('<option value="'.$file.'">User System Variables</option>');
   }
   if (is_file($file = '/etc/arno-iptables-firewall/firewall.conf')) {

@@ -10,11 +10,11 @@
 // 12-16-2014
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$MONITCONFDIR = '/etc/rc.conf.d';
+$CONFFILE = '/config';
+// System location of /config.d directory
+$MONITCONFDIR = '/config.d';
 // System location of gui.monit.conf file
-$MONITCONFFILE = '/etc/rc.conf.d/gui.monit.conf';
+$MONITCONFFILE = '/config.d/gui.monit.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

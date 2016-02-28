@@ -39,15 +39,15 @@
 // 11-01-2015, Added DHCPv6 support
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
+$CONFFILE = '/config';
 // System location of default system rc.conf file
-$SYSTEMCONFFILE = '/stat/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$NETCONFDIR = '/etc/rc.conf.d';
+$SYSTEMCONFFILE = '/config';
+// System location of /config.d directory
+$NETCONFDIR = '/config.d';
 // System location of gui.network.conf file
-$NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+$NETCONFFILE = '/config.d/gui.network.conf';
 // System location of gui.firewall.conf file
-$FIREWALLCONFFILE = '/etc/rc.conf.d/gui.firewall.conf';
+$FIREWALLCONFFILE = '/config.d/gui.firewall.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -742,7 +742,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
   }
   
   if (($n = $openvpn_id) > 0) {
-    if (($fp = @fopen('/etc/rc.conf.d/gui.openvpn.conf', 'wb')) === FALSE) {
+    if (($fp = @fopen('/config.d/gui.openvpn.conf', 'wb')) === FALSE) {
       return(FALSE);
     }
     fwrite($fp, "### gui.openvpn.conf - start ###\n");
@@ -755,7 +755,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
   }
   
   if (($n = $openvpnclient_id) > 0) {
-    if (($fp = @fopen('/etc/rc.conf.d/gui.openvpnclient.conf', 'wb')) === FALSE) {
+    if (($fp = @fopen('/config.d/gui.openvpnclient.conf', 'wb')) === FALSE) {
       return(FALSE);
     }
     fwrite($fp, "### gui.openvpnclient.conf - start ###\n");
@@ -767,7 +767,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
     fclose($fp);
   }
   
-  $user_conf = '/etc/rc.conf.d/user.conf';
+  $user_conf = '/config.d/user.conf';
   if (($n = $user_id) > 0) {
     if (($fp = @fopen($user_conf, 'wb')) === FALSE) {
       return(FALSE);
@@ -993,7 +993,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } elseif (isset($_POST['submit_edit_openvpn'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
     if (is_writable($file = '/etc/openvpn/openvpn.conf')) {
-      if (is_file($tmpfile = '/etc/rc.conf.d/gui.openvpn.conf')) {
+      if (is_file($tmpfile = '/config.d/gui.openvpn.conf')) {
         @unlink($tmpfile);
       }
       header('Location: /admin/edit.php?file='.$file);
@@ -1004,7 +1004,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } elseif (isset($_POST['submit_edit_openvpnclient'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
     if (is_writable($file = '/etc/openvpn/openvpnclient.conf')) {
-      if (is_file($tmpfile = '/etc/rc.conf.d/gui.openvpnclient.conf')) {
+      if (is_file($tmpfile = '/config.d/gui.openvpnclient.conf')) {
         @unlink($tmpfile);
       }
       header('Location: /admin/edit.php?file='.$file);
@@ -1014,7 +1014,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_user_conf'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (createUSERconf($file = '/etc/rc.conf.d/user.conf') === FALSE) {
+    if (createUSERconf($file = '/config.d/user.conf') === FALSE) {
       $result = 3;
     }
     if (is_writable($file)) {

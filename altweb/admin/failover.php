@@ -11,11 +11,11 @@
 // 11-01-2015, Added DHCPv6 option
 //
 // System location of rc.conf file
-$CONFFILE = '/etc/rc.conf';
-// System location of /etc/rc.conf.d directory
-$FAILOVERCONFDIR = '/etc/rc.conf.d';
+$CONFFILE = '/config';
+// System location of /config.d directory
+$FAILOVERCONFDIR = '/config.d';
 // System location of gui.failover.conf file
-$FAILOVERCONFFILE = '/etc/rc.conf.d/gui.failover.conf';
+$FAILOVERCONFFILE = '/config.d/gui.failover.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

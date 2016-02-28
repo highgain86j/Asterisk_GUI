@@ -591,7 +591,7 @@ function get_HOSTNAME_DOMAIN() {
   $hostname_domain = '';
   
   // System location of gui.network.conf file
-  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/config.d/gui.network.conf';
   
   if (is_file($NETCONFFILE)) {
     $netvars = parseRCconf($NETCONFFILE);

@@ -21,10 +21,10 @@
 // 01-27-2014, Added "Log Denied DMZ interface packets"
 // 06-08-2014, Added support for multiple "Allow OpenVPN" LAN interfaces
 //
-// System location of /etc/rc.conf.d directory
-$FIREWALLCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$FIREWALLCONFDIR = '/config.d';
 // System location of gui.firewall.conf file
-$FIREWALLCONFFILE = '/etc/rc.conf.d/gui.firewall.conf';
+$FIREWALLCONFFILE = '/config.d/gui.firewall.conf';
 // Traffic Shaper Plugin
 $TRAFFIC_SHAPER_PLUGIN = 'traffic-shaper';
 

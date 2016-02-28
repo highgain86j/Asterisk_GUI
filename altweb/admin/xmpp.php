@@ -10,10 +10,10 @@
 // 11-01-2013
 // 02-10-2016, Added Staff support
 //
-// System location of /etc/rc.conf.d directory
-$XMPPCONFDIR = '/etc/rc.conf.d';
+// System location of /config.d directory
+$XMPPCONFDIR = '/config.d';
 // System location of gui.xmpp.conf file
-$XMPPCONFFILE = '/etc/rc.conf.d/gui.xmpp.conf';
+$XMPPCONFFILE = '/config.d/gui.xmpp.conf';
 
 $verbosity_menu = array (
   'error' => 'Low',
