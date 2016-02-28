@@ -11,10 +11,10 @@
 // 08-19-2009, Add IPSEC_PSK_ASSOCIATIONS v2.0 format support
 // 11-26-2010, Add certificate support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$IPSECCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$IPSECCONFDIR = '/etc/rc.conf.d';
 // System location of gui.ipsec.conf file
-$IPSECCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsec.conf';
+$IPSECCONFFILE = '/etc/rc.conf.d/gui.ipsec.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

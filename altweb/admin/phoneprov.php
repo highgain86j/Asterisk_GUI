@@ -11,10 +11,10 @@
 // 08-02-2015, Add Status, Reload and Reboot links
 // 08-04-2015, Add pjsip support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$PHONEPROVCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$PHONEPROVCONFDIR = '/etc/rc.conf.d';
 // System location of gui.phoneprov.conf file
-$PHONEPROVCONFFILE = '/mnt/kd/rc.conf.d/gui.phoneprov.conf';
+$PHONEPROVCONFFILE = '/etc/rc.conf.d/gui.phoneprov.conf';
 // Asterisk sip_notify config file
 $ASTERISK_SIP_NOTIFY_CONF = '/etc/asterisk/sip_notify.conf';
 // Asterisk pjsip_notify config file
@@ -66,7 +66,7 @@ function isMACinSQL($mac) {
     return(FALSE);
   }
 
-  $db_file = '/mnt/kd/asterisk-odbc.sqlite3';
+  $db_file = '/etc/asterisk-odbc.sqlite3';
   if (! is_file("$db_file")) {
     return(FALSE);
   }
@@ -374,9 +374,9 @@ function expandPHONEPROVext($data) {
 //
 function get_importPHONEPROVfile() {
 
-  $conf_files = array ('/mnt/kd/massdeployment.conf',
-                       '/mnt/kd/webgui-massdeployment.conf',
-                       '/mnt/kd/phoneprov/massdeployment.conf');
+  $conf_files = array ('/etc/massdeployment.conf',
+                       '/etc/webgui-massdeployment.conf',
+                       '/etc/phoneprov/massdeployment.conf');
 
   $conf_file = '';
   foreach ($conf_files as $value) {
@@ -461,7 +461,7 @@ function addPHONEPROVmac($family, $key, $enabled, $template, $ext_cid, $password
 function generatePHONEPROVfiles($data, $reload, &$result_str, &$status) {
   $result_str = '';
   $status = 0;
-  $conf_file = '/mnt/kd/webgui-massdeployment.conf';
+  $conf_file = '/etc/webgui-massdeployment.conf';
 
   if (($fp = @fopen($conf_file, 'wb')) === FALSE) {
     $status = 1;
@@ -689,7 +689,7 @@ require_once '../common/header.php';
   <table class="layout"><tr><td><center>
   <form method="post" action="<?php echo $myself;?>">
 <?php
-  $phoneprov_base_dir = trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/mnt/kd/phoneprov}"'));
+  $phoneprov_base_dir = trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"'));
 
   if (is_file($PHONEPROVCONFFILE)) {
     $vars = parseRCconf($PHONEPROVCONFFILE);

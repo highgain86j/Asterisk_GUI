@@ -21,7 +21,7 @@ function create_sql_tables()
   global $global_prefs;
 
   try {
-    $pdo_db = new PDO("sqlite:/mnt/kd/asterisk-odbc.sqlite3");
+    $pdo_db = new PDO("sqlite:/etc/asterisk-odbc.sqlite3");
     $pdo_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if (getPREFdef($global_prefs, 'sqldata_create_schema') !== 'no') {

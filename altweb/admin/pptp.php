@@ -9,10 +9,10 @@
 // pptp.php for AstLinux
 // 23-02-2011
 //
-// System location of /mnt/kd/rc.conf.d directory
-$PPTPCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$PPTPCONFDIR = '/etc/rc.conf.d';
 // System location of gui.pptp.conf file
-$PPTPCONFFILE = '/mnt/kd/rc.conf.d/gui.pptp.conf';
+$PPTPCONFFILE = '/etc/rc.conf.d/gui.pptp.conf';
 
 $verbosity_menu = array (
   '1' => 'Low',
@@ -47,7 +47,7 @@ function getPOOLvars($var) {
   }
   // Set defaults
   // System location of gui.network.conf file
-  $NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
   
   $pool['num'] = '8';
   $pool['remote'] = '192.168.101.232-239';

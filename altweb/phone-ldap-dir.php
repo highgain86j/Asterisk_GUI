@@ -70,7 +70,7 @@ function LDAP_Client($start_tls, &$uri, &$base) {
   }
 
   // begin - Custom variables, don't edit origional phone-ldap-dir.php script.
-  // Copy this script to /mnt/kd/phoneprov/phone-ldap-dir.php to make changes.
+  // Copy this script to /etc/phoneprov/phone-ldap-dir.php to make changes.
   $user = '';
   $pass = '';
   $proto_version = 3;

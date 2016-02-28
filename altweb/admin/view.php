@@ -41,11 +41,11 @@ require_once '../common/header.php';
     if ($dir === '/var/log' ||
         $dir === '/var/log/asterisk' ||
         $dir === '/mnt/kd' ||
-        $dir === '/mnt/kd/openvpn' ||
-        $dir === '/mnt/kd/rc.conf.d' ||
-        $dir === '/mnt/kd/arno-iptables-firewall' ||
-        $dir === '/mnt/kd/crontabs' ||
-        $dir === '/mnt/kd/docs' ||
+        $dir === '/etc/openvpn' ||
+        $dir === '/etc/rc.conf.d' ||
+        $dir === '/etc/arno-iptables-firewall' ||
+        $dir === '/etc/crontabs' ||
+        $dir === '/etc/docs' ||
         $dir === '/etc/asterisk' ||
         $dir === '/etc/dahdi' ||
         $file === '/etc/ssh/sshd_config' ||

@@ -10,10 +10,10 @@
 // 11-12-2012
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$SIPTLSCERTCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$SIPTLSCERTCONFDIR = '/etc/rc.conf.d';
 // System location of gui.siptlscert.conf file
-$SIPTLSCERTCONFFILE = '/mnt/kd/rc.conf.d/gui.siptlscert.conf';
+$SIPTLSCERTCONFFILE = '/etc/rc.conf.d/gui.siptlscert.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -34,7 +34,7 @@ if (is_file($SIPTLSCERTCONFFILE)) {
 function siptlscert_openssl($keysize, $algorithm, $dnsname) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';
@@ -374,9 +374,9 @@ if ($openssl !== FALSE) {
     putHtml('<tr class="dtrow0"><td class="dialogText" style="text-align: left; padding-top: 0px; padding-bottom: 0px;" colspan="6">');
     putHtml('<pre>');
     putText(';------------- TLS settings -------------');
-    putText('tlscertfile=/mnt/kd/ssl/sip-tls/keys/server.crt');
+    putText('tlscertfile=/etc/ssl/sip-tls/keys/server.crt');
     putText('');
-    putText('tlsprivatekey=/mnt/kd/ssl/sip-tls/keys/server.key');
+    putText('tlsprivatekey=/etc/ssl/sip-tls/keys/server.key');
     putHtml('</pre>');
     putHtml('</td></tr>');
   } else {

@@ -10,10 +10,10 @@
 // 11-23-2010
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$IPSECMCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$IPSECMCONFDIR = '/etc/rc.conf.d';
 // System location of gui.ipsecmobile.conf file
-$IPSECMCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsecmobile.conf';
+$IPSECMCONFFILE = '/etc/rc.conf.d/gui.ipsecmobile.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -34,7 +34,7 @@ if (is_file($IPSECMCONFFILE)) {
 function ipsecmobile_openssl($keysize, $algorithm, $dnsname) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';
@@ -248,7 +248,7 @@ if (opensslIPSECMOBILEis_valid($openssl)) {
   $value = 'IPSECM_RSA_KEY="server.key"';
   fwrite($fp, "### Key File\n".$value."\n");
 } else {
-  $value = isset($_POST['path']) ? tuq($_POST['path']) : '/mnt/kd/ipsec';
+  $value = isset($_POST['path']) ? tuq($_POST['path']) : '/etc/ipsec';
   $value = 'IPSECM_RSA_PATH="'.$value.'"';
   fwrite($fp, "### Certificate Directory\n".$value."\n");
   $value = isset($_POST['ca']) ? tuq($_POST['ca']) : 'ca.crt';
@@ -707,7 +707,7 @@ if (! opensslIPSECMOBILEis_valid($openssl)) {
   putHtml('Directory:');
   putHtml('</td><td style="text-align: left;" colspan="5">');
   if (($value = getVARdef($db, 'IPSECM_RSA_PATH')) === '') {
-    $value = '/mnt/kd/ipsec';
+    $value = '/etc/ipsec';
   }
   putHtml('<input type="text" size="32" maxlength="128" value="'.$value.'" name="path" />');
   putHtml('</td></tr>');

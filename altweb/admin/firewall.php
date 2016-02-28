@@ -21,10 +21,10 @@
 // 01-27-2014, Added "Log Denied DMZ interface packets"
 // 06-08-2014, Added support for multiple "Allow OpenVPN" LAN interfaces
 //
-// System location of /mnt/kd/rc.conf.d directory
-$FIREWALLCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$FIREWALLCONFDIR = '/etc/rc.conf.d';
 // System location of gui.firewall.conf file
-$FIREWALLCONFFILE = '/mnt/kd/rc.conf.d/gui.firewall.conf';
+$FIREWALLCONFFILE = '/etc/rc.conf.d/gui.firewall.conf';
 // Traffic Shaper Plugin
 $TRAFFIC_SHAPER_PLUGIN = 'traffic-shaper';
 
@@ -342,7 +342,7 @@ function saveFIREWALLsettings($conf_dir, $conf_file, $db, $delete = NULL) {
   $value = 'BLOCK_HOSTS="'.tuq($_POST['hosts_blocked']).'"';
   fwrite($fp, $value."\n");
   if (isset($_POST['file_blocked'])) {
-    $value = 'BLOCK_HOSTS_FILE="/mnt/kd/blocked-hosts"';
+    $value = 'BLOCK_HOSTS_FILE="/etc/blocked-hosts"';
     fwrite($fp, $value."\n");
   }
   $value = 'BLOCKED_HOST_LOG='.(isset($_POST['log_blocked']) ? '1' : '0');
@@ -644,7 +644,7 @@ require_once '../common/header.php';
     } elseif ($result == 11) {
       putHtml('<p style="color: green;">Settings saved, click "Restart Firewall" to apply any changed settings.</p>');
     } elseif ($result == 20) {
-      putHtml('<p style="color: green;">Firewall is Upgraded and Restarted. Previous files are in: /mnt/kd/arno-iptables-OLD</p>');
+      putHtml('<p style="color: green;">Firewall is Upgraded and Restarted. Previous files are in: /etc/arno-iptables-OLD</p>');
     } elseif ($result == 21) {
       putHtml('<p style="color: green;">New Firewall Rule Added, click "Restart Firewall" to apply any changed settings.</p>');
     } elseif ($result == 90) {
@@ -1062,8 +1062,8 @@ if (! is_null($TRAFFIC_SHAPER_FILE)) {
   $value = getVARdef($vars, 'BLOCK_HOSTS');
   putHtml('<input type="text" size="68" maxlength="200" value="'.$value.'" name="hosts_blocked" /></td></tr>');
   putHtml('<tr class="dtrow1"><td width="75" style="text-align: right;">');
-  $sel = (getVARdef($vars, 'BLOCK_HOSTS_FILE') === '/mnt/kd/blocked-hosts') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="file_blocked" name="file_blocked"'.$sel.' /></td><td>Block Host/CIDR using the file /mnt/kd/blocked-hosts</td></tr>');
+  $sel = (getVARdef($vars, 'BLOCK_HOSTS_FILE') === '/etc/blocked-hosts') ? ' checked="checked"' : '';
+  putHtml('<input type="checkbox" value="file_blocked" name="file_blocked"'.$sel.' /></td><td>Block Host/CIDR using the file /etc/blocked-hosts</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: right;">');
   $sel = (getVARdef($vars, 'BLOCKED_HOST_LOG') == 1) ? ' checked="checked"' : '';
   putHtml('<input type="checkbox" value="log_blocked" name="log_blocked"'.$sel.' /></td><td>Log Denied attempts by a blocked host</td></tr>');

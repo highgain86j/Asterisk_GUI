@@ -12,10 +12,10 @@
 // 07-22-2013, Reorganize to force unique IP's
 // 02-10-2016, Added Staff support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$DNSHOSTSCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$DNSHOSTSCONFDIR = '/etc/rc.conf.d';
 // System location of gui.dnshosts.conf file
-$DNSHOSTSCONFFILE = '/mnt/kd/rc.conf.d/gui.dnshosts.conf';
+$DNSHOSTSCONFFILE = '/etc/rc.conf.d/gui.dnshosts.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

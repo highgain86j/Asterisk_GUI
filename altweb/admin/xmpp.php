@@ -10,10 +10,10 @@
 // 11-01-2013
 // 02-10-2016, Added Staff support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$XMPPCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$XMPPCONFDIR = '/etc/rc.conf.d';
 // System location of gui.xmpp.conf file
-$XMPPCONFFILE = '/mnt/kd/rc.conf.d/gui.xmpp.conf';
+$XMPPCONFFILE = '/etc/rc.conf.d/gui.xmpp.conf';
 
 $verbosity_menu = array (
   'error' => 'Low',
@@ -49,7 +49,7 @@ require_once '../common/functions.php';
 function xmppGETclients($vars) {
   $id = 0;
 
-  if (is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+  if (is_file('/etc/prosody/prosody.cfg.lua')) {
     $tmpfile = tempnam("/tmp", "PHP_");
     shell('prosodyctl mod_listusers >'.$tmpfile.' 2>/dev/null', $status);
     if ($status == 0) {
@@ -164,7 +164,7 @@ function changeUserPass() {
   if ($pass === '') {
     return(1);
   }
-  if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+  if (! is_file('/etc/prosody/prosody.cfg.lua')) {
     return(2);
   }
 
@@ -186,7 +186,7 @@ function addUserPass() {
   if ($pass === '') {
     return(1);
   }
-  if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+  if (! is_file('/etc/prosody/prosody.cfg.lua')) {
     return(2);
   }
   if (! preg_match('/^[a-zA-Z0-9][a-zA-Z0-9._-]*[@][a-zA-Z][a-zA-Z0-9._-]*[a-zA-Z]$/', $user)) {
@@ -205,7 +205,7 @@ function deleteUser($user) {
   if ($user === '') {
     return(FALSE);
   }
-  if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+  if (! is_file('/etc/prosody/prosody.cfg.lua')) {
     return(2);
   }
 
@@ -221,7 +221,7 @@ function reloadModule($mod) {
   if ($mod === '') {
     return(FALSE);
   }
-  if (! is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+  if (! is_file('/etc/prosody/prosody.cfg.lua')) {
     return(2);
   }
   if (! is_file('/var/run/prosody/prosody.pid')) {
@@ -298,7 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_groups'])) {
     $result = saveXMPPsettings($XMPPCONFDIR, $XMPPCONFFILE);
-    if (is_writable($file = '/mnt/kd/prosody/sharedgroups.conf')) {
+    if (is_writable($file = '/etc/prosody/sharedgroups.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
@@ -371,7 +371,7 @@ require_once '../common/header.php';
   putHtml('<tr class="dtrow0"><td width="180">&nbsp;</td><td>&nbsp;</td></tr>');
 
 if ($global_admin) {
-if (! is_file('/mnt/kd/ssl/sip-tls/keys/server.crt') || ! is_file('/mnt/kd/ssl/sip-tls/keys/server.key')) {
+if (! is_file('/etc/ssl/sip-tls/keys/server.crt') || ! is_file('/etc/ssl/sip-tls/keys/server.key')) {
   putHtml('<tr class="dtrow0"><td class="dialogText" style="text-align: left;" colspan="2">');
   putHtml('<strong>Missing SIP-TLS Server Certificate:</strong> <i>(Shared with XMPP)</i>');
   putHtml('</td></tr>');
@@ -447,7 +447,7 @@ if (! is_file('/mnt/kd/ssl/sip-tls/keys/server.crt') || ! is_file('/mnt/kd/ssl/s
   $sel = ($xmpp_groups === 'yes') ? ' selected="selected"' : '';
   putHtml('<option value="yes"'.$sel.'>enabled</option>');
   putHtml('</select>');
-  if (is_file('/mnt/kd/prosody/sharedgroups.conf')) {
+  if (is_file('/etc/prosody/sharedgroups.conf')) {
     putHtml('&ndash;');
     putHtml('<input type="submit" value="Edit Groups" name="submit_edit_groups" class="button" />');
     if ($xmpp_groups === 'yes') {
@@ -545,7 +545,7 @@ if ($value === '') {
   putHtml('</td></tr>');
 } // if global_admin
 
-if (is_file('/mnt/kd/prosody/prosody.cfg.lua')) {
+if (is_file('/etc/prosody/prosody.cfg.lua')) {
   putHtml('<tr class="dtrow0"><td class="dialogText" style="text-align: left;" colspan="2">');
   putHtml('<strong>Client Credentials:</strong>');
   putHtml('</td></tr>');

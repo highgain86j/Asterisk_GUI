@@ -181,18 +181,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $backup_name = substr($backup_name, 0, $pos);
       }
     }
-    $asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/mnt/kd/asturw'.$suffix : '';
-    $prefix = (getPREFdef($global_prefs, 'system_backup_temp_disk') === 'yes') ? '/mnt/kd/.' : '/tmp/';
+    $asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/etc/asturw'.$suffix : '';
+    $prefix = (getPREFdef($global_prefs, 'system_backup_temp_disk') === 'yes') ? '/etc/.' : '/tmp/';
     $tmpfile = $backup_name.'-'.$backup_type.'-'.date('Y-m-d').$suffix;
     if ($backup_type === 'basic') {
-      $firewall = is_dir('/mnt/kd/arno-iptables-firewall/plugins') ? ' "arno-iptables-firewall/plugins"' : '';
-      $phoneprov_base_dir = rtrim(trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/mnt/kd/phoneprov}"')), '/');
+      $firewall = is_dir('/etc/arno-iptables-firewall/plugins') ? ' "arno-iptables-firewall/plugins"' : '';
+      $phoneprov_base_dir = rtrim(trim(shell_exec('. /etc/rc.conf; echo "${PHONEPROV_BASE_DIR:-/etc/phoneprov}"')), '/');
       if (is_dir("$phoneprov_base_dir/templates") && (strncmp($phoneprov_base_dir, '/mnt/kd', strlen('/mnt/kd')) == 0)) {
-        $templates = ' "'.substr("$phoneprov_base_dir/templates", strlen('/mnt/kd/')).'"';
+        $templates = ' "'.substr("$phoneprov_base_dir/templates", strlen('/etc/')).'"';
       } else {
         $templates = '';
       }
-      $srcfile = '$(ls -1 /mnt/kd/ | sed -n -e "s/^rc.conf.d$/&/p" -e "s/^ssh_keys$/&/p"';
+      $srcfile = '$(ls -1 /etc/ | sed -n -e "s/^rc.conf.d$/&/p" -e "s/^ssh_keys$/&/p"';
       $srcfile .= ' -e "s/^.*[.]conf$/&/p" -e "s/^webgui-prefs.txt$/&/p" -e "s/^ast.*/&/p"';
       $srcfile .= ' -e "s/^blocked-hosts$/&/p" -e "s/^dnsmasq.static$/&/p" -e "s/^hosts$/&/p" -e "s/^ethers$/&/p"';
       $srcfile .= ' -e "s/^rc.local$/&/p" -e "s/^rc.local.stop$/&/p" -e "s/^rc.elocal$/&/p" -e "s/^rc.ledcontrol$/&/p"';
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $srcfile .= $firewall;
       $srcfile .= $templates;
     } elseif ($backup_type === 'cdr') {
-      $srcfile = '$(ls -1 /mnt/kd/ | sed -n -e "s/^cdr-.*/&/p")';
+      $srcfile = '$(ls -1 /etc/ | sed -n -e "s/^cdr-.*/&/p")';
       $asturw = '';
     } elseif ($backup_type === 'monitor') {
       $srcfile = 'monitor';
@@ -212,12 +212,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $srcfile = 'voicemail';
       $asturw = '';
     } elseif ($backup_type === 'config') {
-      $srcfile = '$(ls -1 /mnt/kd/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//")';
+      $srcfile = '$(ls -1 /etc/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//")';
     } elseif ($backup_type === 'unionfs') {
       $srcfile = 'asturw'.$suffix;
-      $asturw = '/mnt/kd/asturw'.$suffix;
+      $asturw = '/etc/asturw'.$suffix;
     } else {
-      $srcfile = '$(ls -1 /mnt/kd/)';
+      $srcfile = '$(ls -1 /etc/)';
     }
     if ($asturw !== '') {
       $excludefile = tempnam("/tmp", "PHP_");
@@ -452,7 +452,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($result == 1) {
       $result = 99;
-      $name = '/mnt/kd/.restore'.$suffix;
+      $name = '/etc/.restore'.$suffix;
       if (move_uploaded_file($tmp_name, $name)) {
         if (($name = uncompressARCHIVE($name, $suffix)) !== FALSE) {
           $result = restoreBASICconfig($name);
@@ -535,7 +535,7 @@ require_once '../common/header.php';
     } elseif ($result == 15) {
       putHtml('<p style="color: red;">Backup Failed, error archiving unionfs partition.</p>');
     } elseif ($result == 16) {
-      putHtml('<p style="color: red;">Backup Failed, click <a href="/admin/prefs.php" class="headerText">Prefs</a>then check "Backup temporary file uses /mnt/kd/ instead of /tmp/"</p>');
+      putHtml('<p style="color: red;">Backup Failed, click <a href="/admin/prefs.php" class="headerText">Prefs</a>then check "Backup temporary file uses /etc/ instead of /tmp/"</p>');
     } elseif ($result == 19) {
       putHtml('<p style="color: red;">No Action, select an add-on package type for this action.</p>');
     } elseif ($result == 20) {
@@ -602,7 +602,7 @@ require_once '../common/header.php';
   if (is_file($file = '/var/log/asterisk/messages')) {
     putHtml('<option value="'.$file.'">asterisk logs</option>');
   }
-  if (is_file($file = '/mnt/kd/webgui-staff-activity.log')) {
+  if (is_file($file = '/etc/webgui-staff-activity.log')) {
     putHtml('<option value="'.$file.'">Staff Activity log</option>');
   }
   if (is_file($file = '/var/log/openvpn.log')) {
@@ -623,16 +623,16 @@ require_once '../common/header.php';
   if (is_file($file = '/stat/etc/rc.conf')) {
     putHtml('<option value="'.$file.'">Default System Variables</option>');
   }
-  if (is_file($file = '/mnt/kd/rc.conf.d/user.conf')) {
+  if (is_file($file = '/etc/rc.conf.d/user.conf')) {
     putHtml('<option value="'.$file.'">User System Variables</option>');
   }
-  if (is_file($file = '/mnt/kd/arno-iptables-firewall/firewall.conf')) {
+  if (is_file($file = '/etc/arno-iptables-firewall/firewall.conf')) {
     putHtml('<option value="'.$file.'">Firewall Defaults</option>');
   }
-  if (is_file($file = '/mnt/kd/crontabs/root')) {
+  if (is_file($file = '/etc/crontabs/root')) {
     putHtml('<option value="'.$file.'">Cron Jobs for root</option>');
   }
-  if (is_file($file = '/mnt/kd/ntpd.drift')) {
+  if (is_file($file = '/etc/ntpd.drift')) {
     putHtml('<option value="'.$file.'">NTP drift file</option>');
   } elseif (is_file($file = '/var/db/ntpd.drift')) {
     putHtml('<option value="'.$file.'">NTP drift file</option>');
@@ -654,9 +654,9 @@ require_once '../common/header.php';
     }
   }
   putHtml('</optgroup>');
-  if (is_dir('/mnt/kd/docs')) {
+  if (is_dir('/etc/docs')) {
     putHtml('<optgroup label="&mdash; Documentation &mdash;">');
-    foreach (glob('/mnt/kd/docs/*') as $globfile) {
+    foreach (glob('/etc/docs/*') as $globfile) {
       if (is_file($globfile)) {
         putHtml('<option value="'.$globfile.'">'.basename($globfile).'</option>');
       }
@@ -687,9 +687,9 @@ require_once '../common/header.php';
   putHtml('</td><td style="text-align: center;">');
   putHtml('<select name="backup_type">');
   $sel = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '&amp; unionfs ' : '';
-  putHtml('<option value="full">All /mnt/kd/ '.$sel.'files</option>');
+  putHtml('<option value="full">All /etc/ '.$sel.'files</option>');
 ?>
-  <option value="unionfs">Non-/mnt/kd/ unionfs files</option>
+  <option value="unionfs">Non-/etc/ unionfs files</option>
   <option value="basic" selected="selected">Basic Configuration files</option>
   <option value="cdr">Call Detail Records (cdr)</option>
   <option value="monitor">Monitor Recordings (mon)</option>

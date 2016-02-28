@@ -10,12 +10,12 @@
 // 12-12-2009
 // 01-21-2013, Add Restart Asterisk
 // 01-15-2016, Add Restart FOP2
-// 01-18-2016, Add Primary /mnt/kd/ files Backup
+// 01-18-2016, Add Primary /etc/ files Backup
 //
 // System location of webgui-staff-backup.conf
-$CONFFILE = '/mnt/kd/webgui-staff-backup.conf';
+$CONFFILE = '/etc/webgui-staff-backup.conf';
 // System location of webgui-staff-activity.log
-$LOGFILE = '/mnt/kd/webgui-staff-activity.log';
+$LOGFILE = '/etc/webgui-staff-activity.log';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -58,22 +58,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $backup_name = substr($backup_name, 0, $pos);
       }
     }
-    $asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/mnt/kd/asturw'.$suffix : '';
-    $prefix = '/mnt/kd/.';
+    $asturw = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '/etc/asturw'.$suffix : '';
+    $prefix = '/etc/.';
     $tmpfile = $backup_name.'-'.$backup_type.'-'.date('Y-m-d').$suffix;
     if ($backup_type === 'primary') {
       $wanpipe = '';
-      foreach (glob('/mnt/kd/wanpipe/*.conf') as $globfile) {
+      foreach (glob('/etc/wanpipe/*.conf') as $globfile) {
         $wanpipe .= ' "wanpipe/'.basename($globfile).'"';
       }
-      $templates = (is_dir('/mnt/kd/phoneprov/templates')) ? ' "phoneprov/templates"' : '';
-      $srcfile = '$(ls -1 /mnt/kd/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//"';
+      $templates = (is_dir('/etc/phoneprov/templates')) ? ' "phoneprov/templates"' : '';
+      $srcfile = '$(ls -1 /etc/ | sed -e "s/^cdr-.*//" -e "s/^monitor$//" -e "s/^voicemail$//"';
       $srcfile .= ' -e "s/^bin$//" -e "s/^.*[.]bak$//" -e "s/^log.*//" -e "s/^backup.*//"';
       $srcfile .= ' -e "s/^wanpipe$//" -e "s/^fossil$//" -e "s/^phoneprov$//" -e "s/^tftpboot$//" -e "s/^lost[+]found$//")';
       $srcfile .= $wanpipe;
       $srcfile .= $templates;
     } else {
-      $srcfile = '$(ls -1 /mnt/kd/)';
+      $srcfile = '$(ls -1 /etc/)';
     }
     if ($asturw !== '') {
       $excludefile = tempnam("/tmp", "PHP_");
@@ -246,8 +246,8 @@ if (isDownloadValid($CONFFILE)) {
   putHtml('</td></tr><tr><td style="text-align: center;">');
   putHtml('<select name="backup_type">');
   $sel = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? '&amp; unionfs ' : '';
-  putHtml('<option value="primary">Primary /mnt/kd/ '.$sel.'files</option>');
-  putHtml('<option value="full">All /mnt/kd/ '.$sel.'files</option>');
+  putHtml('<option value="primary">Primary /etc/ '.$sel.'files</option>');
+  putHtml('<option value="full">All /etc/ '.$sel.'files</option>');
   putHtml('</select>');
   putHtml('</td></tr><tr><td style="text-align: center;">');
   putHtml('<input type="submit" value="Download Backup" name="submit_backup" />');

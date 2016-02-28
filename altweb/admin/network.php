@@ -42,12 +42,12 @@
 $CONFFILE = '/etc/rc.conf';
 // System location of default system rc.conf file
 $SYSTEMCONFFILE = '/stat/etc/rc.conf';
-// System location of /mnt/kd/rc.conf.d directory
-$NETCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$NETCONFDIR = '/etc/rc.conf.d';
 // System location of gui.network.conf file
-$NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+$NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
 // System location of gui.firewall.conf file
-$FIREWALLCONFFILE = '/mnt/kd/rc.conf.d/gui.firewall.conf';
+$FIREWALLCONFFILE = '/etc/rc.conf.d/gui.firewall.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -429,8 +429,8 @@ function saveNETWORKsettings($conf_dir, $conf_file) {
   
   $value = 'FTPD="'.$_POST['ftp'].'"';
   fwrite($fp, "### FTP Server\n".$value."\n");
-  if (is_file('/mnt/kd/vsftpd.conf')) {
-    $value = 'FTPDOPTIONS="/mnt/kd/vsftpd.conf"';
+  if (is_file('/etc/vsftpd.conf')) {
+    $value = 'FTPDOPTIONS="/etc/vsftpd.conf"';
     fwrite($fp, "### deprecated vsftpd options\n".$value."\n");
   }
   
@@ -537,7 +537,7 @@ function saveNETWORKsettings($conf_dir, $conf_file) {
     if (($email = getPREFdef($global_prefs, 'dn_email_address_cmdstr')) === '') {
       $email = 'info@astlinux.org';
     }
-    $fname = '/mnt/kd/ssl/webinterface.pem';
+    $fname = '/etc/ssl/webinterface.pem';
     if (opensslCREATEhttpsCert($countryName, $stateName, $localityName, $orgName, $orgUnit, $commonName, $email, $fname)) {
       $value = 'HTTPSCERT="'.$fname.'"';
     }
@@ -742,7 +742,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
   }
   
   if (($n = $openvpn_id) > 0) {
-    if (($fp = @fopen('/mnt/kd/rc.conf.d/gui.openvpn.conf', 'wb')) === FALSE) {
+    if (($fp = @fopen('/etc/rc.conf.d/gui.openvpn.conf', 'wb')) === FALSE) {
       return(FALSE);
     }
     fwrite($fp, "### gui.openvpn.conf - start ###\n");
@@ -755,7 +755,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
   }
   
   if (($n = $openvpnclient_id) > 0) {
-    if (($fp = @fopen('/mnt/kd/rc.conf.d/gui.openvpnclient.conf', 'wb')) === FALSE) {
+    if (($fp = @fopen('/etc/rc.conf.d/gui.openvpnclient.conf', 'wb')) === FALSE) {
       return(FALSE);
     }
     fwrite($fp, "### gui.openvpnclient.conf - start ###\n");
@@ -767,7 +767,7 @@ function createOTHERconfs($sys_file, $cur_file, $net_file) {
     fclose($fp);
   }
   
-  $user_conf = '/mnt/kd/rc.conf.d/user.conf';
+  $user_conf = '/etc/rc.conf.d/user.conf';
   if (($n = $user_id) > 0) {
     if (($fp = @fopen($user_conf, 'wb')) === FALSE) {
       return(FALSE);
@@ -893,7 +893,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   } elseif (isset($_POST['submit_edit_ntp'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/ntpd.conf')) {
+    if (is_writable($file = '/etc/ntpd.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
@@ -903,7 +903,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_smtp_aliases'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/msmtp-aliases.conf')) {
+    if (is_writable($file = '/etc/msmtp-aliases.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
@@ -921,16 +921,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_kamailio'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/kamailio/kamailio-local.cfg')) {
+    if (is_writable($file = '/etc/kamailio/kamailio-local.cfg')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
-    } elseif (is_writable($file = '/mnt/kd/kamailio/kamailio.cfg')) {
+    } elseif (is_writable($file = '/etc/kamailio/kamailio.cfg')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
   } elseif (isset($_POST['submit_slapd'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/slapd.conf')) {
+    if (is_writable($file = '/etc/slapd.conf')) {
       header('Location: /admin/edit.php?file='.$file);
     } else {
       header('Location: /admin/slapd.php');
@@ -942,7 +942,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_snmp_agent'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/snmp/snmpd.conf')) {
+    if (is_writable($file = '/etc/snmp/snmpd.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
@@ -956,13 +956,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_dnsmasq_conf'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/dnsmasq.conf')) {
+    if (is_writable($file = '/etc/dnsmasq.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
   } elseif (isset($_POST['submit_edit_dnsmasq_static'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/dnsmasq.static')) {
+    if (is_writable($file = '/etc/dnsmasq.static')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
@@ -980,20 +980,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_ldap'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/ldap.conf')) {
+    if (is_writable($file = '/etc/ldap.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
   } elseif (isset($_POST['submit_edit_ups'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/ups/ups.conf')) {
+    if (is_writable($file = '/etc/ups/ups.conf')) {
       header('Location: /admin/edit.php?file='.$file);
       exit;
     }
   } elseif (isset($_POST['submit_edit_openvpn'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/openvpn/openvpn.conf')) {
-      if (is_file($tmpfile = '/mnt/kd/rc.conf.d/gui.openvpn.conf')) {
+    if (is_writable($file = '/etc/openvpn/openvpn.conf')) {
+      if (is_file($tmpfile = '/etc/rc.conf.d/gui.openvpn.conf')) {
         @unlink($tmpfile);
       }
       header('Location: /admin/edit.php?file='.$file);
@@ -1003,8 +1003,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_openvpnclient'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (is_writable($file = '/mnt/kd/openvpn/openvpnclient.conf')) {
-      if (is_file($tmpfile = '/mnt/kd/rc.conf.d/gui.openvpnclient.conf')) {
+    if (is_writable($file = '/etc/openvpn/openvpnclient.conf')) {
+      if (is_file($tmpfile = '/etc/rc.conf.d/gui.openvpnclient.conf')) {
         @unlink($tmpfile);
       }
       header('Location: /admin/edit.php?file='.$file);
@@ -1014,7 +1014,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
   } elseif (isset($_POST['submit_edit_user_conf'])) {
     $result = saveNETWORKsettings($NETCONFDIR, $NETCONFFILE);
-    if (createUSERconf($file = '/mnt/kd/rc.conf.d/user.conf') === FALSE) {
+    if (createUSERconf($file = '/etc/rc.conf.d/user.conf') === FALSE) {
       $result = 3;
     }
     if (is_writable($file)) {
@@ -1608,7 +1608,7 @@ require_once '../common/header.php';
   putHtml('</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
   putHtml('NTP Server:');
-  if (! is_file('/mnt/kd/ntpd.conf')) {
+  if (! is_file('/etc/ntpd.conf')) {
     if (($t_value = getVARdef($db, 'NTPSERVS', $cur_db)) === '') {
       $t_value = getVARdef($db, 'NTPSERV', $cur_db);
     }
@@ -1692,7 +1692,7 @@ require_once '../common/header.php';
   putHtml('</select>');
   putHtml('</td><td style="text-align: left;" colspan="3">');
   if (($value = getVARdef($db, 'SMTP_CA', $cur_db)) === '') {
-    $value = '/mnt/kd/ssl/ca-smtp.pem';
+    $value = '/etc/ssl/ca-smtp.pem';
   }
   putHtml('SMTP Cert File:<input type="text" size="24" maxlength="64" value="'.$value.'" name="smtp_ca_cert" /></td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="3">');
@@ -1702,7 +1702,7 @@ require_once '../common/header.php';
   $value = getVARdef($db, 'SMTP_PASS', $cur_db);
   $value = htmlspecialchars(RCconfig2string($value));
   putHtml('SMTP Password:<input type="password" size="24" maxlength="64" value="'.$value.'" name="smtp_pass" /></td></tr>');
-  if (is_file('/mnt/kd/msmtp-aliases.conf')) {
+  if (is_file('/etc/msmtp-aliases.conf')) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
     putHtml('SMTP Local Aliases:');
     putHtml('<input type="submit" value="Edit Local Aliases" name="submit_smtp_aliases" class="button" /></td></tr>');
@@ -1723,7 +1723,7 @@ require_once '../common/header.php';
     putHtml('<input type="submit" value="Configure DNSCrypt" name="submit_dnscrypt" class="button" /></td></tr>');
   }
   if (is_file('/etc/init.d/kamailio') && 
-     (is_file('/mnt/kd/kamailio/kamailio.cfg') || is_file('/mnt/kd/kamailio/kamailio-local.cfg'))) {
+     (is_file('/etc/kamailio/kamailio.cfg') || is_file('/etc/kamailio/kamailio-local.cfg'))) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
     putHtml('Kamailio&nbsp;SIP&nbsp;Server:');
     putHtml('<input type="submit" value="Configure Kamailio" name="submit_kamailio" class="button" /></td></tr>');
@@ -1742,7 +1742,7 @@ require_once '../common/header.php';
     putHtml('LDAP Server, Directory Information:');
     putHtml('<input type="submit" value="Configure LDAP Server" name="submit_slapd" class="button" /></td></tr>');
   }
-  if (is_file('/etc/init.d/snmpd') && is_file('/mnt/kd/snmp/snmpd.conf')) {
+  if (is_file('/etc/init.d/snmpd') && is_file('/etc/snmp/snmpd.conf')) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
     putHtml('SNMP&nbsp;Agent&nbsp;Server:');
     putHtml('<input type="submit" value="Configure SNMP Agent" name="submit_snmp_agent" class="button" /></td></tr>');
@@ -2053,7 +2053,7 @@ require_once '../common/header.php';
   putHtml('<strong>LDAP Client System Defaults:</strong>');
   putHtml('</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
-  if (! is_file('/mnt/kd/ldap.conf')) {
+  if (! is_file('/etc/ldap.conf')) {
     $value = getVARdef($db, 'LDAP_URI', $cur_db);
     putHtml('LDAP Server URI(s):<input type="text" size="82" maxlength="256" value="'.$value.'" name="ldap_uri" /></td></tr>');
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
@@ -2082,7 +2082,7 @@ require_once '../common/header.php';
     putHtml('</select>');
     putHtml('&ndash;&nbsp;Server CA Cert File:');
     if (($value = getVARdef($db, 'LDAP_TLS_CACERT', $cur_db)) === '') {
-      $value = '/mnt/kd/ssl/ca-ldap.pem';
+      $value = '/etc/ssl/ca-ldap.pem';
     }
     putHtml('<input type="text" size="24" maxlength="64" value="'.$value.'" name="ldap_tls_cacert" /></td></tr>');
   } else {
@@ -2096,7 +2096,7 @@ require_once '../common/header.php';
   
   putHtml('<strong>UPS Monitoring &amp; Shutdown:</strong>');
   putHtml('</td></tr>');
-  if (! is_file('/mnt/kd/ups/ups.conf')) {
+  if (! is_file('/etc/ups/ups.conf')) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="3">');
     putHtml('UPS Driver:');
     $ups_driver = getVARdef($db, 'UPS_DRIVER', $cur_db);
@@ -2183,11 +2183,11 @@ if (is_file('/etc/init.d/fossil')) {
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
   putHtml('User System Variables:');
   putHtml('<input type="submit" value="Edit User Variables" name="submit_edit_user_conf" class="button" /></td></tr>');
-  if (is_writable('/mnt/kd/dnsmasq.conf')) {
+  if (is_writable('/etc/dnsmasq.conf')) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
     putHtml('Full DNS &amp; DHCP Configuration:');
     putHtml('<input type="submit" value="Edit DNSMasq Conf" name="submit_edit_dnsmasq_conf" class="button" /></td></tr>');
-  } elseif (is_writable('/mnt/kd/dnsmasq.static')) {
+  } elseif (is_writable('/etc/dnsmasq.static')) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
     putHtml('Additional DNS &amp; DHCP Configuration:');
     putHtml('<input type="submit" value="Edit DNSMasq Static" name="submit_edit_dnsmasq_static" class="button" /></td></tr>');

@@ -15,10 +15,10 @@
 // 02-13-2013, Added OpenVPN 2.3 IPv6 support
 // 12-14-2015, Added Signature Algorithm support
 //
-// System location of /mnt/kd/rc.conf.d directory
-$OVPNCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$OVPNCONFDIR = '/etc/rc.conf.d';
 // System location of gui.openvpn.conf file
-$OVPNCONFFILE = '/mnt/kd/rc.conf.d/gui.openvpn.conf';
+$OVPNCONFFILE = '/etc/rc.conf.d/gui.openvpn.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -39,7 +39,7 @@ if (is_file($OVPNCONFFILE)) {
 function openvpn_openssl($keysize, $algorithm) {
   global $global_prefs;
   // System location of gui.network.conf file
-  $NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
   
   if ($keysize === '') {
     $keysize = '2048';
@@ -254,7 +254,7 @@ if (opensslOPENVPNis_valid($openssl)) {
     }
   }
 } else {
-  $base = '/mnt/kd/openvpn/easy-rsa/keys';
+  $base = '/etc/openvpn/easy-rsa/keys';
   $value = isset($_POST['ca']) ? tuq($_POST['ca']) : $base.'/ca.crt';
   $value = 'OVPN_CA="'.$value.'"';
   fwrite($fp, "### CA File\n".$value."\n");
@@ -894,7 +894,7 @@ if (! opensslOPENVPNis_valid($openssl)) {
   putHtml('CA File:');
   putHtml('</td><td style="text-align: left;" colspan="5">');
   if (($value = getVARdef($db, 'OVPN_CA')) === '') {
-    $value = '/mnt/kd/openvpn/easy-rsa/keys/ca.crt';
+    $value = '/etc/openvpn/easy-rsa/keys/ca.crt';
   }
   putHtml('<input type="text" size="64" maxlength="128" value="'.$value.'" name="ca" />');
   putHtml('</td></tr>');
@@ -902,7 +902,7 @@ if (! opensslOPENVPNis_valid($openssl)) {
   putHtml('CERT File:');
   putHtml('</td><td style="text-align: left;" colspan="5">');
   if (($value = getVARdef($db, 'OVPN_CERT')) === '') {
-    $value = '/mnt/kd/openvpn/easy-rsa/keys/server.crt';
+    $value = '/etc/openvpn/easy-rsa/keys/server.crt';
   }
   putHtml('<input type="text" size="64" maxlength="128" value="'.$value.'" name="cert" />');
   putHtml('</td></tr>');
@@ -910,7 +910,7 @@ if (! opensslOPENVPNis_valid($openssl)) {
   putHtml('Key File:');
   putHtml('</td><td style="text-align: left;" colspan="5">');
   if (($value = getVARdef($db, 'OVPN_KEY')) === '') {
-    $value = '/mnt/kd/openvpn/easy-rsa/keys/server.key';
+    $value = '/etc/openvpn/easy-rsa/keys/server.key';
   }
   putHtml('<input type="text" size="64" maxlength="128" value="'.$value.'" name="key" />');
   putHtml('</td></tr>');
@@ -918,7 +918,7 @@ if (! opensslOPENVPNis_valid($openssl)) {
   putHtml('DH File:');
   putHtml('</td><td style="text-align: left;" colspan="5">');
   if (($value = getVARdef($db, 'OVPN_DH')) === '') {
-    $value = '/mnt/kd/openvpn/easy-rsa/keys/dh1024.pem';
+    $value = '/etc/openvpn/easy-rsa/keys/dh1024.pem';
   }
   putHtml('<input type="text" size="64" maxlength="128" value="'.$value.'" name="dh" />');
   putHtml('</td></tr>');

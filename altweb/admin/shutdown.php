@@ -9,7 +9,7 @@
 // shutdown.php for AstLinux
 // 12-12-2009
 //
-$STAFF_LOGFILE = '/mnt/kd/webgui-staff-activity.log';
+$STAFF_LOGFILE = '/etc/webgui-staff-activity.log';
 
 $myself = $_SERVER['PHP_SELF'];
 

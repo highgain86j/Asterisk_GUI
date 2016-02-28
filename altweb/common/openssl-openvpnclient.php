@@ -17,7 +17,7 @@ function openvpnclientSETUP() {
   if (! function_exists('openssl_x509_parse')) {
     return(FALSE);
   }
-  $ssl['base_dir'] = '/mnt/kd/openvpn';
+  $ssl['base_dir'] = '/etc/openvpn';
   $ssl['dir'] = $ssl['base_dir'].'/webinterface';
   $ssl['key_dir'] = $ssl['dir'].'/client_keys';
   $ssl['ca_crt'] = $ssl['key_dir'].'/ca.crt';

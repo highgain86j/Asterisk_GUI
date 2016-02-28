@@ -19,7 +19,7 @@
 // 01-04-2014, Added statusPROCESS()
 //
 // System location of prefs file                                 
-$KD_PREFS_LOCATION = '/mnt/kd/webgui-prefs.txt';           
+$KD_PREFS_LOCATION = '/etc/webgui-prefs.txt';           
 
 // Function: putHtml
 // Put html string, with new-line
@@ -236,7 +236,7 @@ function session_manual_gc() {
 function updateCRON($user, $ret_good, $ret_fail) {
   $result = $ret_fail;
 
-  shell('echo "'.$user.'" >/mnt/kd/crontabs/cron.update 2>/dev/null', $status);
+  shell('echo "'.$user.'" >/etc/crontabs/cron.update 2>/dev/null', $status);
   if ($status == 0) {
     $result = $ret_good;
   }
@@ -301,7 +301,7 @@ function secs2hourminsec($secs) {
 //
 //
 function getARNOplugins() {
-  $dir = '/mnt/kd/arno-iptables-firewall/plugins';
+  $dir = '/etc/arno-iptables-firewall/plugins';
   if (! is_dir($dir)) {
     return(FALSE);
   }
@@ -539,13 +539,13 @@ function parseRCconf($conffile) {
           $value = trim($value, ' ');
         }
         if ($var === 'NTPSERV' || $var === 'NTPSERVS') {
-          if (is_file('/mnt/kd/ntpd.conf')) {
-            $value = '#NTP server is specified in /mnt/kd/ntpd.conf';
+          if (is_file('/etc/ntpd.conf')) {
+            $value = '#NTP server is specified in /etc/ntpd.conf';
           }
         }
         if ($var === 'UPS_DRIVER' || $var === 'UPS_DRIVER_PORT') {
-          if (is_file('/mnt/kd/ups/ups.conf')) {
-            $value = '#UPS driver is specified in /mnt/kd/ups/ups.conf';
+          if (is_file('/etc/ups/ups.conf')) {
+            $value = '#UPS driver is specified in /etc/ups/ups.conf';
           }
         }
         if ($var === 'ASTBACK_PATHS' ||
@@ -591,7 +591,7 @@ function get_HOSTNAME_DOMAIN() {
   $hostname_domain = '';
   
   // System location of gui.network.conf file
-  $NETCONFFILE = '/mnt/kd/rc.conf.d/gui.network.conf';
+  $NETCONFFILE = '/etc/rc.conf.d/gui.network.conf';
   
   if (is_file($NETCONFFILE)) {
     $netvars = parseRCconf($NETCONFFILE);

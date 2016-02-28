@@ -10,7 +10,7 @@
 // 04-06-2008
 // 04-20-2008, Never-ending Additions
 // 08-19-2008, Added CDR Log Format Menu
-// 08-24-2008, Added /mnt/kd/ prefs file support
+// 08-24-2008, Added /etc/ prefs file support
 // 01-02-2012, Added Show Jabber Status/Command
 // 09-28-2012, Added Show Adaptive Ban Plugin Status
 // 09-28-2012, Added Show Latest System Logs/Hide Log Words
@@ -1027,10 +1027,10 @@ require_once '../common/header.php';
   putHtml('<input type="checkbox" value="backup_gzip" name="backup_gzip"'.$sel.' /></td><td colspan="5">Backup tar archives compressed with gzip [.gz]</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: right;">');
   $sel = (getPREFdef($global_prefs, 'system_backup_asturw') === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="backup_asturw" name="backup_asturw"'.$sel.' /></td><td colspan="5">Backup unionfs partition as /mnt/kd/asturw.tar[.gz]</td></tr>');
+  putHtml('<input type="checkbox" value="backup_asturw" name="backup_asturw"'.$sel.' /></td><td colspan="5">Backup unionfs partition as /etc/asturw.tar[.gz]</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: right;">');
   $sel = (getPREFdef($global_prefs, 'system_backup_temp_disk') === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="backup_temp" name="backup_temp"'.$sel.' /></td><td colspan="5">Backup temporary file uses /mnt/kd/ instead of /tmp/</td></tr>');
+  putHtml('<input type="checkbox" value="backup_temp" name="backup_temp"'.$sel.' /></td><td colspan="5">Backup temporary file uses /etc/ instead of /tmp/</td></tr>');
   putHtml('<tr class="dtrow1"><td style="text-align: right;">');
   $sel = (getPREFdef($global_prefs, 'system_reboot_classic_full') === 'yes') ? ' checked="checked"' : '';
   putHtml('<input type="checkbox" value="reboot_classic_full" name="reboot_classic_full"'.$sel.' /></td><td colspan="5">Disable faster "kernel-reboot" System Reboot</td></tr>');

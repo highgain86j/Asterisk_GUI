@@ -11,10 +11,10 @@
 //
 // System location of rc.conf file
 $CONFFILE = '/etc/rc.conf';
-// System location of /mnt/kd/rc.conf.d directory
-$DNSCRYPTCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$DNSCRYPTCONFDIR = '/etc/rc.conf.d';
 // System location of gui.dnscrypt.conf file
-$DNSCRYPTCONFFILE = '/mnt/kd/rc.conf.d/gui.dnscrypt.conf';
+$DNSCRYPTCONFFILE = '/etc/rc.conf.d/gui.dnscrypt.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

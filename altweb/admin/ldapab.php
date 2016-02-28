@@ -41,7 +41,7 @@ function exportLDIF($rootpw, $ou) {
       $backup_name = substr($backup_name, 0, $pos);
     }
   }
-  $prefix = '/mnt/kd/.';
+  $prefix = '/etc/.';
   $tmpfile = $backup_name.'-'.$ou.'-'.date('Y-m-d').'.ldif.txt';
   $bdn = trim(shell_exec('. /etc/rc.conf; echo "${LDAP_SERVER_BASEDN:-dc=ldap}"'));
 
@@ -259,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($result == 1) {
       $result = 99;
-      $name = '/mnt/kd/.import_ldif'.$suffix;
+      $name = '/etc/.import_ldif'.$suffix;
       if (move_uploaded_file($tmp_name, $name)) {
         $result = importLDIF($rootpw, 'addressbook', $name, $count);
       }
@@ -294,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($result == 1) {
       $result = 99;
-      $name = '/mnt/kd/.import_vcard'.$suffix;
+      $name = '/etc/.import_vcard'.$suffix;
       if (move_uploaded_file($tmp_name, $name)) {
         $result = importVCARD($rootpw, 'addressbook', $name, $count);
       }

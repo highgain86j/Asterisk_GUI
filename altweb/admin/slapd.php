@@ -11,10 +11,10 @@
 //
 // System location of rc.conf file
 $CONFFILE = '/etc/rc.conf';
-// System location of /mnt/kd/rc.conf.d directory
-$SLAPDCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$SLAPDCONFDIR = '/etc/rc.conf.d';
 // System location of gui.slapd.conf file
-$SLAPDCONFFILE = '/mnt/kd/rc.conf.d/gui.slapd.conf';
+$SLAPDCONFFILE = '/etc/rc.conf.d/gui.slapd.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 
@@ -186,7 +186,7 @@ require_once '../common/header.php';
   <table class="stdtable">
   <tr class="dtrow0"><td width="60">&nbsp;</td><td width="100">&nbsp;</td><td width="50">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td width="60">&nbsp;</td></tr>
 <?php
-if (! is_file('/mnt/kd/ssl/sip-tls/keys/server.crt') || ! is_file('/mnt/kd/ssl/sip-tls/keys/server.key')) {
+if (! is_file('/etc/ssl/sip-tls/keys/server.crt') || ! is_file('/etc/ssl/sip-tls/keys/server.key')) {
   putHtml('<tr class="dtrow0"><td class="dialogText" style="text-align: left;" colspan="6">');
   putHtml('<strong>Missing SIP-TLS Server Certificate:</strong> <i>(Shared with LDAP Server)</i>');
   putHtml('</td></tr>');

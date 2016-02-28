@@ -76,15 +76,15 @@ $databases = array
 (
 	array
 	(
-		"path"=> "/mnt/kd/asterisk-odbc.sqlite3",
+		"path"=> "/etc/asterisk-odbc.sqlite3",
 		"name"=> "Asterisk"
 	)
 );
-if (is_file('/mnt/kd/cdr-sqlite3/cdr-odbc.sqlite3')) {
-	$databases[] = array( "path"=> "/mnt/kd/cdr-sqlite3/cdr-odbc.sqlite3", "name"=> "CDR ODBC" );
+if (is_file('/etc/cdr-sqlite3/cdr-odbc.sqlite3')) {
+	$databases[] = array( "path"=> "/etc/cdr-sqlite3/cdr-odbc.sqlite3", "name"=> "CDR ODBC" );
 }
-if (is_file('/mnt/kd/cdr-sqlite3/master.db')) {
-	$databases[] = array( "path"=> "/mnt/kd/cdr-sqlite3/master.db", "name"=> "CDR SQLite3" );
+if (is_file('/etc/cdr-sqlite3/master.db')) {
+	$databases[] = array( "path"=> "/etc/cdr-sqlite3/master.db", "name"=> "CDR SQLite3" );
 }
 //AstLinux// end of define database files
 

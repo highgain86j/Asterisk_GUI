@@ -21,7 +21,7 @@ function openvpnSETUP($opts, $countryName, $stateName, $localityName, $orgName, 
     return(FALSE);
   }
 
-  $ssl['base_dir'] = '/mnt/kd/openvpn';
+  $ssl['base_dir'] = '/etc/openvpn';
   $ssl['dir'] = $ssl['base_dir'].'/webinterface';
   $ssl['key_dir'] = $ssl['dir'].'/keys';
   $ssl['config'] = $ssl['dir'].'/openssl.cnf';

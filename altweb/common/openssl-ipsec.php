@@ -20,7 +20,7 @@ function ipsecSETUP($peer) {
   if (! function_exists('openssl_x509_parse')) {
     return(FALSE);
   }
-  $ssl['base_dir'] = '/mnt/kd/ipsec';
+  $ssl['base_dir'] = '/etc/ipsec';
   $ssl['dir'] = $ssl['base_dir'].'/webinterface';
   $ssl['peer_dir'] = $ssl['dir'].'/peer_keys';
   $ssl['key_dir'] = $ssl['peer_dir'].'/'.rawurlencode($peer);

@@ -20,7 +20,7 @@ function sip_tls_SETUP($opts, $countryName, $stateName, $localityName, $orgName,
     return(FALSE);
   }
 
-  $ssl['base_dir'] = '/mnt/kd/ssl';
+  $ssl['base_dir'] = '/etc/ssl';
   $ssl['dir'] = $ssl['base_dir'].'/sip-tls';
   $ssl['key_dir'] = $ssl['dir'].'/keys';
   $ssl['config'] = $ssl['dir'].'/openssl.cnf';

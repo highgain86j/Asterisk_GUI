@@ -12,10 +12,10 @@
 //
 // System location of rc.conf file
 $CONFFILE = '/etc/rc.conf';
-// System location of /mnt/kd/rc.conf.d directory
-$FAILOVERCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$FAILOVERCONFDIR = '/etc/rc.conf.d';
 // System location of gui.failover.conf file
-$FAILOVERCONFFILE = '/mnt/kd/rc.conf.d/gui.failover.conf';
+$FAILOVERCONFFILE = '/etc/rc.conf.d/gui.failover.conf';
 
 $myself = $_SERVER['PHP_SELF'];
 

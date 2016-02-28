@@ -20,7 +20,7 @@ function ipsecmobileSETUP($opts, $countryName, $stateName, $localityName, $orgNa
     return(FALSE);
   }
 
-  $ssl['base_dir'] = '/mnt/kd/ipsec';
+  $ssl['base_dir'] = '/etc/ipsec';
   $ssl['dir'] = $ssl['base_dir'].'/webinterface';
   $ssl['key_dir'] = $ssl['dir'].'/keys';
   $ssl['config'] = $ssl['dir'].'/openssl.cnf';

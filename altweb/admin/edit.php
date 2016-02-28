@@ -290,22 +290,22 @@ require_once '../common/header.php';
   $dir = substr($openfile, 0, $pos);
   
   if ($dir === '/mnt/kd' ||
-      $dir === '/mnt/kd/dahdi' ||
-      $dir === '/mnt/kd/openvpn' ||
-      $dir === '/mnt/kd/openvpn/ccd' ||
-      $dir === '/mnt/kd/rc.conf.d' ||
-      $dir === '/mnt/kd/crontabs' ||
-      $dir === '/mnt/kd/snmp' ||
-      $dir === '/mnt/kd/fop2' ||
-      $dir === '/mnt/kd/kamailio' ||
-      $dir === '/mnt/kd/monit' ||
-      $dir === '/mnt/kd/monit/monit.d' ||
-      $dir === '/mnt/kd/ups' ||
-      $dir === '/mnt/kd/prosody' ||
-      $dir === '/mnt/kd/docs' ||
-      $dir === '/mnt/kd/arno-iptables-firewall' ||
-      $dir === '/mnt/kd/arno-iptables-firewall/plugins' ||
-      $dir === '/mnt/kd/phoneprov/templates' ||
+      $dir === '/etc/dahdi' ||
+      $dir === '/etc/openvpn' ||
+      $dir === '/etc/openvpn/ccd' ||
+      $dir === '/etc/rc.conf.d' ||
+      $dir === '/etc/crontabs' ||
+      $dir === '/etc/snmp' ||
+      $dir === '/etc/fop2' ||
+      $dir === '/etc/kamailio' ||
+      $dir === '/etc/monit' ||
+      $dir === '/etc/monit/monit.d' ||
+      $dir === '/etc/ups' ||
+      $dir === '/etc/prosody' ||
+      $dir === '/etc/docs' ||
+      $dir === '/etc/arno-iptables-firewall' ||
+      $dir === '/etc/arno-iptables-firewall/plugins' ||
+      $dir === '/etc/phoneprov/templates' ||
       $dir === '/etc/asterisk' ||
       $dir === '/etc/asterisk/includes' ||
       $openfile === '/etc/rc.modules' ||
@@ -448,65 +448,65 @@ require_once '../common/header.php';
   <select name="file_list" size="8">
 <?php
   putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; System Configuration &mdash;&mdash;&mdash;&mdash;">');
-  if (is_writable($file = '/mnt/kd/rc.conf.d/user.conf')) {
+  if (is_writable($file = '/etc/rc.conf.d/user.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - User System Variables</option>');
   }
-  foreach (glob('/mnt/kd/*.conf') as $globfile) {
+  foreach (glob('/etc/*.conf') as $globfile) {
     if (is_writable($globfile)) {
       $label = basename($globfile);
-      $label = isset($sys_label["$label"]) ? $sys_label["$label"] : '/mnt/kd/ System Config File';
+      $label = isset($sys_label["$label"]) ? $sys_label["$label"] : '/etc/ System Config File';
       $sel = ($globfile === $openfile) ? ' selected="selected"' : '';
       putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - '.$label.'</option>');
     }
   }
-  foreach (glob('/mnt/kd/dahdi/*.conf') as $globfile) {
+  foreach (glob('/etc/dahdi/*.conf') as $globfile) {
     if (is_writable($globfile)) {
       $sel = ($globfile === $openfile) ? ' selected="selected"' : '';
       putHtml('<option value="'.$globfile.'"'.$sel.'>dahdi/'.basename($globfile).' - DAHDI System Config</option>');
     }
   }
-  if (is_writable($file = '/mnt/kd/openvpn/openvpn.conf')) {
+  if (is_writable($file = '/etc/openvpn/openvpn.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - OpenVPN Server</option>');
   }
-  if (is_writable($file = '/mnt/kd/openvpn/openvpnclient.conf')) {
+  if (is_writable($file = '/etc/openvpn/openvpnclient.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - OpenVPN Client</option>');
   }
-  if (is_writable($file = '/mnt/kd/ethers')) {
+  if (is_writable($file = '/etc/ethers')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Assign MAC to IP addresses</option>');
   }
-  if (is_writable($file = '/mnt/kd/hosts')) {
+  if (is_writable($file = '/etc/hosts')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Additional hosts File Entries</option>');
   }
-  if (is_writable($file = '/mnt/kd/dnsmasq.static')) {
+  if (is_writable($file = '/etc/dnsmasq.static')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Additional DNSmasq Config</option>');
   }
-  if (is_writable($file = '/mnt/kd/dnsmasq.leases')) {
+  if (is_writable($file = '/etc/dnsmasq.leases')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Active DNSmasq Leases</option>');
   }
-  if (is_writable($file = '/mnt/kd/blocked-hosts')) {
+  if (is_writable($file = '/etc/blocked-hosts')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Firewall Blocked Hosts</option>');
   }
-  if (is_writable($file = '/mnt/kd/crontabs/root')) {
+  if (is_writable($file = '/etc/crontabs/root')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>crontabs/'.basename($file).' - Cron Jobs for root</option>');
   }
-  if (is_writable($file = '/mnt/kd/ast-crash')) {
+  if (is_writable($file = '/etc/ast-crash')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Safe Asterisk Crash Shell Script</option>');
   }
-  foreach (glob('/mnt/kd/rc.*') as $globfile) {
-    if ($globfile === '/mnt/kd/rc.local' ||
-        $globfile === '/mnt/kd/rc.local.stop' ||
-        $globfile === '/mnt/kd/rc.elocal' ||
-        $globfile === '/mnt/kd/rc.ledcontrol') {
+  foreach (glob('/etc/rc.*') as $globfile) {
+    if ($globfile === '/etc/rc.local' ||
+        $globfile === '/etc/rc.local.stop' ||
+        $globfile === '/etc/rc.elocal' ||
+        $globfile === '/etc/rc.ledcontrol') {
       if (is_writable($globfile)) {
         $sel = ($globfile === $openfile) ? ' selected="selected"' : '';
         putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - Startup/Stop Shell Script</option>');
@@ -525,28 +525,28 @@ require_once '../common/header.php';
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Net Interface Rules</option>');
   }
-  if (is_writable($file = '/mnt/kd/prosody/prosody.conf')) {
+  if (is_writable($file = '/etc/prosody/prosody.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>prosody/'.basename($file).' - XMPP Configuration</option>');
   }
-  if (is_writable($file = '/mnt/kd/prosody/sharedgroups.conf')) {
+  if (is_writable($file = '/etc/prosody/sharedgroups.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>prosody/'.basename($file).' - XMPP Shared Groups</option>');
   }
-  if (is_writable($file = '/mnt/kd/snmp/snmpd.conf')) {
+  if (is_writable($file = '/etc/snmp/snmpd.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>snmp/'.basename($file).' - SNMP Agent Server Config</option>');
   }
-  if (is_writable($file = '/mnt/kd/snmp/snmp.conf')) {
+  if (is_writable($file = '/etc/snmp/snmp.conf')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>snmp/'.basename($file).' - SNMP Applications Config</option>');
   }
-  if (is_writable($file = '/mnt/kd/wan-failover.script')) {
+  if (is_writable($file = '/etc/wan-failover.script')) {
     $sel = ($file === $openfile) ? ' selected="selected"' : '';
     putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - WAN Failover Shell Script</option>');
   }
   putHtml('</optgroup>');
-  if (is_dir('/mnt/kd/openvpn/ccd') && count($globfiles = glob('/mnt/kd/openvpn/ccd/*')) > 0) {
+  if (is_dir('/etc/openvpn/ccd') && count($globfiles = glob('/etc/openvpn/ccd/*')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; OpenVPN Client Configs &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -556,7 +556,7 @@ require_once '../common/header.php';
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/ups') && count($globfiles = glob('/mnt/kd/ups/*.conf')) > 0) {
+  if (is_dir('/etc/ups') && count($globfiles = glob('/etc/ups/*.conf')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; UPS Monitoring Configs &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -564,13 +564,13 @@ require_once '../common/header.php';
         putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - NUT UPS Configuration</option>');
       }
     }
-    if (is_writable($file = '/mnt/kd/ups/upsd.users')) {
+    if (is_writable($file = '/etc/ups/upsd.users')) {
       $sel = ($file === $openfile) ? ' selected="selected"' : '';
       putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - NUT UPS Configuration</option>');
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/monit/monit.d') && count($globfiles = glob('/mnt/kd/monit/monit.d/*.conf')) > 0) {
+  if (is_dir('/etc/monit/monit.d') && count($globfiles = glob('/etc/monit/monit.d/*.conf')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; Monit Monitoring Configs &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -578,23 +578,23 @@ require_once '../common/header.php';
         putHtml('<option value="'.$globfile.'"'.$sel.'>monit.d/'.basename($globfile).' - Monit Configuration</option>');
       }
     }
-    if (is_writable($file = '/mnt/kd/monit/monitrc')) {
+    if (is_writable($file = '/etc/monit/monitrc')) {
       $sel = ($file === $openfile) ? ' selected="selected"' : '';
       putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Monit Base Configuration</option>');
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/docs') && count($globfiles = glob('/mnt/kd/docs/*')) > 0) {
+  if (is_dir('/etc/docs') && count($globfiles = glob('/etc/docs/*')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; Documentation &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
         $sel = ($globfile === $openfile) ? ' selected="selected"' : '';
-        putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - /mnt/kd/docs/ File</option>');
+        putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - /etc/docs/ File</option>');
       }
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/fop2') && count($globfiles = glob('/mnt/kd/fop2/*.cfg')) > 0) {
+  if (is_dir('/etc/fop2') && count($globfiles = glob('/etc/fop2/*.cfg')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; Flash Operating Panel2 Configs &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -608,7 +608,7 @@ require_once '../common/header.php';
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/kamailio') && count($globfiles = glob('/mnt/kd/kamailio/*.cfg')) > 0) {
+  if (is_dir('/etc/kamailio') && count($globfiles = glob('/etc/kamailio/*.cfg')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; Kamailio Configs &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -618,7 +618,7 @@ require_once '../common/header.php';
     }
     putHtml('</optgroup>');
   }
-  if (is_dir('/mnt/kd/phoneprov/templates') && count($globfiles = glob('/mnt/kd/phoneprov/templates/*.conf')) > 0) {
+  if (is_dir('/etc/phoneprov/templates') && count($globfiles = glob('/etc/phoneprov/templates/*.conf')) > 0) {
     putHtml('<optgroup label="&mdash;&mdash;&mdash;&mdash; IP Phone Provisioning Templates &mdash;&mdash;&mdash;&mdash;">');
     foreach ($globfiles as $globfile) {
       if (is_file($globfile) && is_writable($globfile)) {
@@ -666,7 +666,7 @@ require_once '../common/header.php';
         putHtml('<option value="'.$globfile.'"'.$sel.'>'.basename($globfile).' - Firewall Plugin</option>');
       }
     }
-    if (is_writable($file = '/mnt/kd/arno-iptables-firewall/custom-rules')) {
+    if (is_writable($file = '/etc/arno-iptables-firewall/custom-rules')) {
       $sel = ($file === $openfile) ? ' selected="selected"' : '';
       putHtml('<option value="'.$file.'"'.$sel.'>'.basename($file).' - Firewall Custom Rules</option>');
     }

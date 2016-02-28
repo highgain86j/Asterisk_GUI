@@ -9,10 +9,10 @@
 // ipsecxauth.php for AstLinux
 // 16-04-2012
 //
-// System location of /mnt/kd/rc.conf.d directory
-$IPSECXAUTHCONFDIR = '/mnt/kd/rc.conf.d';
+// System location of /etc/rc.conf.d directory
+$IPSECXAUTHCONFDIR = '/etc/rc.conf.d';
 // System location of gui.ipsecxauth.conf file
-$IPSECXAUTHCONFFILE = '/mnt/kd/rc.conf.d/gui.ipsecxauth.conf';
+$IPSECXAUTHCONFFILE = '/etc/rc.conf.d/gui.ipsecxauth.conf';
 
 $connections_menu = array (
   '2' => '2 Users',
