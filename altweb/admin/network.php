@@ -500,19 +500,19 @@ function saveNETWORKsettings($conf_dir, $conf_file) {
   $value = isset($_POST['http_accesslog']) ? 'HTTP_ACCESSLOG="yes"' : 'HTTP_ACCESSLOG="no"';
   fwrite($fp, "### HTTP access logging\n".$value."\n");
   
-  $value = 'HTTPSDIR="'.tuq($_POST['https_dir']).'"';
+  $value = 'HTTPSDIR="'.tuq($_POST['http_dir']).'"';
   fwrite($fp, "### HTTPS Server Directory\n".$value."\n");
   
-  $value = isset($_POST['https_cgi']) ? 'HTTPSCGI="yes"' : 'HTTPSCGI="no"';
+  $value = isset($_POST['http_cgi']) ? 'HTTPSCGI="yes"' : 'HTTPSCGI="no"';
   fwrite($fp, "### HTTPS CGI\n".$value."\n");
   
-  $value = isset($_POST['https_listing']) ? 'HTTPS_LISTING="yes"' : 'HTTPS_LISTING="no"';
+  $value = isset($_POST['http_listing']) ? 'HTTPS_LISTING="yes"' : 'HTTPS_LISTING="no"';
   fwrite($fp, "### HTTPS directory listing\n".$value."\n");
   
-  $value = isset($_POST['https_accesslog']) ? 'HTTPS_ACCESSLOG="yes"' : 'HTTPS_ACCESSLOG="no"';
+  $value = isset($_POST['http_accesslog']) ? 'HTTPS_ACCESSLOG="yes"' : 'HTTPS_ACCESSLOG="no"';
   fwrite($fp, "### HTTPS access logging\n".$value."\n");
   
-  $value = 'HTTPSCERT="'.tuq($_POST['https_cert']).'"';
+  $value = 'HTTPSCERT="'.tuq($_POST['http_cert']).'"';
   if (isset($_POST['create_cert']) && is_opensslHERE()) {
     if (($countryName = getPREFdef($global_prefs, 'dn_country_name_cmdstr')) === '') {
       $countryName = 'US';
@@ -538,7 +538,7 @@ function saveNETWORKsettings($conf_dir, $conf_file) {
       $email = 'info@astlinux.org';
     }
     $fname = '/etc/ssl/webinterface.pem';
-    if (opensslCREATEhttpsCert($countryName, $stateName, $localityName, $orgName, $orgUnit, $commonName, $email, $fname)) {
+    if (opensslCREATEhttpCert($countryName, $stateName, $localityName, $orgName, $orgUnit, $commonName, $email, $fname)) {
       $value = 'HTTPSCERT="'.$fname.'"';
     }
   }
@@ -1782,7 +1782,7 @@ require_once '../common/header.php';
   $sel = ($value === 'shellinaboxd') ? ' selected="selected"' : '';
   putHtml('<option value="shellinaboxd"'.$sel.'>enabled</option>');
   putHtml('</select>');
-  putHtml('&nbsp;<i>(https://'.$_SERVER['HTTP_HOST'].'/admin/cli/ or CLI Tab)</i>');
+  putHtml('&nbsp;<i>(http://'.$_SERVER['HTTP_HOST'].'/admin/cli/ or CLI Tab)</i>');
   putHtml('</td></tr>');
   
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
@@ -1793,7 +1793,7 @@ require_once '../common/header.php';
   $sel = ($value === 'darkstat') ? ' selected="selected"' : '';
   putHtml('<option value="darkstat"'.$sel.'>enabled</option>');
   putHtml('</select>');
-  putHtml('&nbsp;<i>(https://'.$_SERVER['HTTP_HOST'].'/admin/netstat/ or NetStat Tab)</i>');
+  putHtml('&nbsp;<i>(http://'.$_SERVER['HTTP_HOST'].'/admin/netstat/ or NetStat Tab)</i>');
   putHtml('</td></tr>');
 
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
@@ -1848,28 +1848,28 @@ require_once '../common/header.php';
 
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
   $value = getVARdef($db, 'HTTPSDIR', $cur_db);
-  putHtml('HTTPS&nbsp;Server Directory:<input type="text" size="45" maxlength="64" value="'.$value.'" name="https_dir" />');
+  putHtml('HTTPS&nbsp;Server Directory:<input type="text" size="45" maxlength="64" value="'.$value.'" name="http_dir" />');
   putHtml('</td></tr>');
   
   putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
   putHtml('HTTPS&nbsp;Server Options:');
   $sel = (getVARdef($db, 'HTTPSCGI', $cur_db) === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="https_cgi" name="https_cgi"'.$sel.' />&nbsp;HTTPS&nbsp;CGI&nbsp;');
+  putHtml('<input type="checkbox" value="http_cgi" name="http_cgi"'.$sel.' />&nbsp;HTTPS&nbsp;CGI&nbsp;');
   $sel = (getVARdef($db, 'HTTPS_LISTING', $cur_db) === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="https_listing" name="https_listing"'.$sel.' />&nbsp;Allow Listing');
+  putHtml('<input type="checkbox" value="http_listing" name="http_listing"'.$sel.' />&nbsp;Allow Listing');
   $sel = (getVARdef($db, 'HTTPS_ACCESSLOG', $cur_db) === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="https_accesslog" name="https_accesslog"'.$sel.' />&nbsp;Access Logging');
+  putHtml('<input type="checkbox" value="http_accesslog" name="http_accesslog"'.$sel.' />&nbsp;Access Logging');
   putHtml('</td></tr>');
 
   $value = getVARdef($db, 'HTTPSCERT', $cur_db);
   if (is_opensslHERE()) {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="4">');
-    putHtml('HTTPS&nbsp;Certificate File:<input type="text" size="36" maxlength="64" value="'.$value.'" name="https_cert" /></td>');
+    putHtml('HTTPS&nbsp;Certificate File:<input type="text" size="36" maxlength="64" value="'.$value.'" name="http_cert" /></td>');
     putHtml('<td style="text-align: left;" colspan="2">');
     putHtml('<input type="checkbox" value="create_cert" name="create_cert" />&nbsp;Create New HTTPS Certificate');
   } else {
     putHtml('<tr class="dtrow1"><td style="text-align: left;" colspan="6">');
-    putHtml('HTTPS&nbsp;Certificate File:<input type="text" size="36" maxlength="64" value="'.$value.'" name="https_cert" />');
+    putHtml('HTTPS&nbsp;Certificate File:<input type="text" size="36" maxlength="64" value="'.$value.'" name="http_cert" />');
   }
   putHtml('</td></tr>');
 

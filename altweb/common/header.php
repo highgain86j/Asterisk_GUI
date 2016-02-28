@@ -104,8 +104,8 @@ function getCLIlink($g_prefs) {
 function getFOP2link($g_prefs) {
   $cmd = '';
   if (is_addon_package('fop2')) {
-    if (getPREFdef($g_prefs, 'external_fop2_https') === 'yes') {
-      $cmd = 'https://localhost/fop2/';
+    if (getPREFdef($g_prefs, 'external_fop2_http') === 'yes') {
+      $cmd = 'http://localhost/fop2/';
     } else {
       $cmd = 'http://localhost/fop2/';
     }

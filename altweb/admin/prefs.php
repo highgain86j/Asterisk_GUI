@@ -404,8 +404,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       fwrite($fp, $value."\n");
     }
 
-    if (isset($_POST['external_fop2_https'])) {
-      $value = 'external_fop2_https = yes';
+    if (isset($_POST['external_fop2_http'])) {
+      $value = 'external_fop2_http = yes';
       fwrite($fp, $value."\n");
     }
 
@@ -1122,8 +1122,8 @@ require_once '../common/header.php';
   putHtml('<input type="text" size="48" maxlength="128" value="'.$value.'" name="external_cli_link" /></td></tr>');
   
   putHtml('<tr class="dtrow1"><td style="text-align: right;" colspan="2">External FOP2 Link:</td><td colspan="4">');
-  $sel = (getPREFdef($global_prefs, 'external_fop2_https') === 'yes') ? ' checked="checked"' : '';
-  putHtml('<input type="checkbox" value="external_fop2_https" name="external_fop2_https"'.$sel.' />&nbsp;Use HTTPS</td></tr>');
+  $sel = (getPREFdef($global_prefs, 'external_fop2_http') === 'yes') ? ' checked="checked"' : '';
+  putHtml('<input type="checkbox" value="external_fop2_http" name="external_fop2_http"'.$sel.' />&nbsp;Use HTTPS</td></tr>');
   
   putHtml('<tr class="dtrow1"><td style="text-align: right;">');
   $sel = (getPREFdef($global_prefs, 'tab_directory_show') === 'yes') ? ' checked="checked"' : '';

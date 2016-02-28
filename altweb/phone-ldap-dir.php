@@ -10,7 +10,7 @@
 // 25-05-2013, Convert phone-dir.php for use with LDAP
 // 16-09-2013, Add Microsoft Active Directory custom variable
 //
-// Usage: https://pbx/phone-ldap-dir.php?tls&type=generic&search=
+// Usage: http://pbx/phone-ldap-dir.php?tls&type=generic&search=
 // If 'tls' appears, regardless of value,  start_tls is enabled (defaults to disabled)
 // type= generic, polycom, aastra, yealink, snom (defaults to "generic")
 // search= text to search for anywhere in name (defaults to none)

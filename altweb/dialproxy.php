@@ -13,11 +13,11 @@
 //
 // GET Method:
 // Usage: http://pbx/dialproxy.php?num=2223334444&ext=default
-// Usage: https://pbx/dialproxy.php?num=2223334444&ext=default
+// Usage: http://pbx/dialproxy.php?num=2223334444&ext=default
 //
 // POST Method:
 // Usage: curl --data-urlencode 'num=2223334444' --data-urlencode 'ext=default' http://pbx/dialproxy.php
-// Usage: curl --data-urlencode 'num=2223334444' --data-urlencode 'ext=default' --insecure https://pbx/dialproxy.php
+// Usage: curl --data-urlencode 'num=2223334444' --data-urlencode 'ext=default' --insecure http://pbx/dialproxy.php
 //
 // [webinterface] manager.conf context must contain
 // read = command,call,originate                               

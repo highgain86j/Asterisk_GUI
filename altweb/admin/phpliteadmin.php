@@ -1,6 +1,6 @@
 <?php
 //	
-//	Project: phpLiteAdmin (https://bitbucket.org/phpliteadmin/public)
+//	Project: phpLiteAdmin (http://bitbucket.org/phpliteadmin/public)
 //	Version: 1.9.6
 //	Summary: PHP-based admin tool to manage SQLite2 and SQLite3 databases on the web
 //	Last updated: 2015-07-05
@@ -31,7 +31,7 @@
 //	////////////////////////////////////////////////////////////////////////
 //	
 //	Please report any bugs you may encounter to our issue tracker here:
-//		https://bitbucket.org/phpliteadmin/public/issues?status=new&status=open
+//		http://bitbucket.org/phpliteadmin/public/issues?status=new&status=open
 
 //AstLinux//  Restrict to 'admin' or 'staff' user.
 function getPHPusername()
@@ -58,7 +58,7 @@ if ($global_user !== 'admin' && $global_user !== 'staff') {
 //    You can set only your custom settings in phpliteadmin.config.php. All other settings will be set to defaults.
 // 2. Change parameters directly in main phpliteadmin.php file
 //
-// Please see https://bitbucket.org/phpliteadmin/public/wiki/Configuration for more details
+// Please see http://bitbucket.org/phpliteadmin/public/wiki/Configuration for more details
 
 //password to gain access
 $password = '';
@@ -95,7 +95,7 @@ if (is_file('/etc/cdr-sqlite3/master.db')) {
 $theme = 'phpliteadmin.css';
 
 // the default language! If you want to change it, save the language file in same folder of phpliteadmin or in folder "languages"
-// More about localizations (downloads, how to translate etc.): https://bitbucket.org/phpliteadmin/public/wiki/Localization
+// More about localizations (downloads, how to translate etc.): http://bitbucket.org/phpliteadmin/public/wiki/Localization
 $language = 'en';
 
 // set default number of rows. You need to relog after changing the number
@@ -139,7 +139,7 @@ $allowed_extensions = array('db','db3','sqlite','sqlite3');
 
 
 // English language-texts.
-// Read our wiki on how to translate: https://bitbucket.org/phpliteadmin/public/wiki/Localization
+// Read our wiki on how to translate: http://bitbucket.org/phpliteadmin/public/wiki/Localization
 $lang = array(
 	"direction" => "LTR",
 	"date_format" => 'M d H:i:s T Y',  //AstLinux//
@@ -450,11 +450,11 @@ define("PAGE", basename(__FILE__));
 //AstLinux// Force PDO
 define("FORCETYPE", "PDO"); //force the extension that will be used (set to false in almost all circumstances except debugging)
 define("SYSTEMPASSWORD", $password); // Makes things easier.
-define('PROJECT_URL','https://bitbucket.org/phpliteadmin/public');
+define('PROJECT_URL','http://bitbucket.org/phpliteadmin/public');
 define('DONATE_URL','http://phpliteadmin.christosoft.de/donate.php');
-define('VERSION_CHECK_URL','https://phpliteadmin.christosoft.de/current_version.php');
-define('PROJECT_BUGTRACKER_LINK','<a href="https://bitbucket.org/phpliteadmin/public/issues?status=new&status=open" target="_blank">https://bitbucket.org/phpliteadmin/public/issues?status=new&status=open</a>');
-define('PROJECT_INSTALL_LINK','<a href="https://bitbucket.org/phpliteadmin/public/wiki/Installation" target="_blank">https://bitbucket.org/phpliteadmin/public/wiki/Installation</a>');
+define('VERSION_CHECK_URL','http://phpliteadmin.christosoft.de/current_version.php');
+define('PROJECT_BUGTRACKER_LINK','<a href="http://bitbucket.org/phpliteadmin/public/issues?status=new&status=open" target="_blank">http://bitbucket.org/phpliteadmin/public/issues?status=new&status=open</a>');
+define('PROJECT_INSTALL_LINK','<a href="http://bitbucket.org/phpliteadmin/public/wiki/Installation" target="_blank">http://bitbucket.org/phpliteadmin/public/wiki/Installation</a>');
 
 // Resource output (css and javascript files)
 //AstLinux// Remove all 'resource' (?resource=) related code, use .js and .css external files instead
@@ -2759,7 +2759,7 @@ if(isset($_GET['action']) && !isset($_GET['confirm']))
 					}
 					//- Chart javascript code
 					?>
-					<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+					<script type='text/javascript' src='http://www.google.com/jsapi'></script>
 					<script type='text/javascript'>
 					google.load('visualization', '1.0', {'packages':['corechart']});
 					google.setOnLoadCallback(drawChart);

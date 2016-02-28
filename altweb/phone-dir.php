@@ -15,7 +15,7 @@
 //             option works for all phones) - Rob Hillis
 // 25-01-2011, Added XML support for Snom Phones
 //
-// Usage: https://pbx/phone-dir.php?type=generic&search=
+// Usage: http://pbx/phone-dir.php?type=generic&search=
 // type= generic, polycom, aastra, yealink, snom (defaults to "generic")
 // search= text to search for anywhere in name (defaults to none)
 

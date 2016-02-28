@@ -143,9 +143,9 @@ function opensslCREATEclientCert($client, $ssl) {
   return(TRUE);
 }
 
-// Function: opensslCREATEhttpsCert()
+// Function: opensslCREATEhttpCert()
 //
-function opensslCREATEhttpsCert($countryName, $stateName, $localityName, $orgName, $orgUnit, $commonName, $email, $fname) {
+function opensslCREATEhttpCert($countryName, $stateName, $localityName, $orgName, $orgUnit, $commonName, $email, $fname) {
   
   $dn = array(
     'countryName' => $countryName,
